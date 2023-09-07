@@ -1,0 +1,18 @@
+# folders
+.vscode
+target
+push_swap_tester
+push_swap_visualizer
+
+# files
+*.a
+*.o
+*.out
+*.ini
+test*.c
+push_swap
+checker_linux
+tester.py
+complexity
+visualizer
+checker
