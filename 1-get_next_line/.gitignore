@@ -1,0 +1,7 @@
+*.out
+*.a
+*.o
+test*
+*test
+main.c
+text*
