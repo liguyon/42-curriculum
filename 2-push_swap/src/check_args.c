@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:55:57 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/06 19:01:49 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/09/15 06:04:49 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static bool	check_int(char *str)
 	int		j;
 	long	nbr;
 
-	
 	if (!(ft_isdigit(str[0]) || str[0] == '+' || str[0] == '-'))
 		return (false);
 	i = 0;
