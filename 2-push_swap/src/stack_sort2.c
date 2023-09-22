@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/23 11:28:01 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/06 15:34:12 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/09/22 16:40:48 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	stack_partition_a(t_stack *a, t_stack *b, int end)
 		}
 		else
 		{
-			if (b->top < a->size_max / 2 && b->top > 1 
+			if (b->top < a->size_max / 2 && b->top > 1
 				&& b->data[b->top] < stack_get_median(b, b->top))
 				stack_rr(a, b, true);
 			else
