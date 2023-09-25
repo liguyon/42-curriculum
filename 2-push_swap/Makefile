@@ -3,7 +3,7 @@
 # Compiler
 #
 ##############
-CC	= gcc
+CC	= cc
 CFLAGS	= -Wall -Wextra -Werror -I$(LIBDIR)/$(LIBFTDIR)
 CLFLAGS	= -L$(LIBDIR)/$(LIBFTDIR) -lft
 

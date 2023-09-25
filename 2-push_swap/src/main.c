@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 18:51:01 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/06 06:30:08 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/09/25 12:07:47 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	main(int argc, char *argv[])
 			return (0);
 		}
 	}
-	if (write(2, "Error\n", 6) != -1)
-		return (0);
-	else
-		return (1);
+	write(2, "Error\n", 6);
+	return (0);
 }

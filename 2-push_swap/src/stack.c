@@ -6,12 +6,13 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:14:41 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/05 19:18:57 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/09/25 12:10:00 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 #include "libft.h"
+#include <unistd.h>
 
 t_stack	*stack_create(int size)
 {
@@ -20,7 +21,7 @@ t_stack	*stack_create(int size)
 	stack = malloc(sizeof(*stack));
 	if (!stack)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	stack->size_max = size;
@@ -29,7 +30,7 @@ t_stack	*stack_create(int size)
 	if (!stack->data)
 	{
 		free(stack);
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		return (NULL);
 	}
 	return (stack);

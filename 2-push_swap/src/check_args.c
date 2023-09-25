@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 20:55:57 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/15 06:04:49 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/09/25 12:11:40 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include <limits.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 /*
  * test whether the argument is a valid integer:
@@ -61,10 +62,8 @@ static bool	check_duplicates(int ac, char *av[])
 	sorted_args = malloc(sizeof(int) * ac);
 	if (!sorted_args)
 	{
-		if (write(2, "Error\n", 6) != -1)
-			exit(0);
-		else
-			exit(1);
+		write(2, "Error\n", 6);
+		exit(0);
 	}
 	i = -1;
 	while (++i < ac)
