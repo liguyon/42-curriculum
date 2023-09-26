@@ -3,7 +3,7 @@
 # Compiler
 #
 ##############
-CC	= cc
+CC	= clang-15
 CFLAGS	= -Wall -Wextra -Werror -I$(LIBDIR)/$(LIBFTDIR)
 CLFLAGS	= -L$(LIBDIR)/$(LIBFTDIR) -lft
 
@@ -79,7 +79,7 @@ LIBFT	= libft.a
 # Build
 #
 ##############
-.PHONY:	all release debug install run clean fclean re bonus
+.PHONY:	all release debug install run clean fclean re bonus testers
 
 $(NAME):	all
 
@@ -109,6 +109,18 @@ fclean:
 	@make -C $(LIBDIR)/$(LIBFTDIR) fclean
 
 re:	fclean all
+
+testers: bonus
+	@rm -rf push_swap_visualizer \
+		&& rm -f ./visualizer \
+		&& git clone https://github.com/o-reo/push_swap_visualizer.git
+	@mkdir -p push_swap_visualizer/build \
+		&& cd push_swap_visualizer/build \
+		&& cmake .. && make && cd ../../ \
+		&& cp push_swap_visualizer/build/bin/visualizer .
+	@rm -rf push_swap_tester && rm -f ./complexity \
+		&& git clone https://github.com/SimonCROS/push_swap_tester.git
+	@make -C push_swap_tester fr && cp push_swap_tester/complexity .
 
 #
 # project srcs build
