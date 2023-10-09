@@ -3,7 +3,7 @@
 # Compiler
 #
 ##############
-CC	= clang-15
+CC	= clang
 CFLAGS	= -Wall -Wextra -Werror -I$(LIBDIR)/$(LIBFTDIR)
 CLFLAGS	= -L$(LIBDIR)/$(LIBFTDIR) -lft
 

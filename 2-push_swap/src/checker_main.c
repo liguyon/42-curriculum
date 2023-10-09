@@ -41,7 +41,7 @@ static int	checker_do_op(t_stack *a, t_stack *b, char *line)
 	else if (ft_strcmp("rrr\n", line) == 0)
 		stack_rrr(a, b, false);
 	else
-		return (write(2, "Error\n", 6));
+		write(2, "Error\n", 6);
 	return (0);
 }
 

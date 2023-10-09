@@ -4,7 +4,6 @@ An algorithmic puzzle where we aim to sort a stack of numbers using only a limit
 
 # Overview
 ![visualizer](assets/visualizer.gif)
-![complexity-500](assets/complexity-500.png)
 
 ## Build
 
