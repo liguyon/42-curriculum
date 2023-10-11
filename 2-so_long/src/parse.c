@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:02:32 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 08:38:17 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/11 08:57:11 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static bool	parse_map_dimensions(t_map *map)
 		ft_printf("Error\nMap is too big\n");
 		return (false);
 	}
-	i = -1; 
+	i = -1;
 	while (map->map[++i] != NULL)
 	{
 		map->height++;
@@ -93,8 +93,8 @@ static bool	parse_map_walls(t_map *map)
 
 static bool	parse_map_components(t_map *map)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	t_map_comp	c;
 
 	j = -1;

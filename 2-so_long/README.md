@@ -6,9 +6,10 @@ Our initial dive into graphics programming with a 2D top-down game.
 - parse map valid path
 - add assets: tileset, collectible
 - render map
-- collectibles w/ animation
+- collectibles
 - enemies w/ anmimation & patrol
 - player w/ animations
+- side panel for text infos
 - add readme preview
 
 ## Overview

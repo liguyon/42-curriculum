@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 08:09:56 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/11 08:57:54 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,6 @@ typedef struct s_entity {
 	int		pos_y;
 	int		state;
 	int		state_anim;
-	
 }	t_entity;
 
 /* data
@@ -165,7 +164,7 @@ typedef struct s_data {
 /* parse
 ================================================================================
 */
-bool	parse(t_map *map, const char *filename);
+bool		parse(t_map *map, const char *filename);
 
 /* graphics
 ================================================================================
@@ -198,7 +197,7 @@ int			timer_get_ticks(t_timer *timer);
 /* load
 ================================================================================
 */
-bool	load(t_data *data, const char *map_filename);
+bool		load(t_data *data, const char *map_filename);
 
 /* render
 ================================================================================
@@ -208,8 +207,8 @@ void		render(t_data *data);
 /* utils
 ================================================================================
 */
-void	*malloc_log(size_t size, char *file, int line);
-void	*calloc_log(size_t nmemb, size_t size, char *file, int line);
-bool	in_charset(char c, const char *charset);
+void		*malloc_log(size_t size, char *file, int line);
+void		*calloc_log(size_t nmemb, size_t size, char *file, int line);
+bool		in_charset(char c, const char *charset);
 
 #endif
