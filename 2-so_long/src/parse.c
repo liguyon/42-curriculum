@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:02:32 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 08:57:11 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:39:42 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,91 +40,6 @@ static bool	parse_file(const char *filename, char *buffer)
 		close(stream.fd);
 	}
 	return (stream.read_success);
-}
-
-static bool	parse_map_dimensions(t_map *map)
-{
-	int	i;
-
-	map->width = ft_strlen(map->map[0]);
-	if (map->width * CONF_TILE_SIZE > CONF_WINDOW_WIDTH - 2 * CONF_TILE_SIZE
-		|| map->height * CONF_TILE_SIZE > CONF_WINDOW_HEIGHT)
-	{
-		ft_printf("Error\nMap is too big\n");
-		return (false);
-	}
-	i = -1;
-	while (map->map[++i] != NULL)
-	{
-		map->height++;
-		if ((int)ft_strlen(map->map[i]) != map->width)
-		{
-			ft_printf("Error\nInvalid map dimensions\n");
-			return (false);
-		}
-	}
-	return (true);
-}
-
-static bool	parse_map_walls(t_map *map)
-{
-	int	i;
-
-	i = -1;
-	while (++i < map->width)
-	{
-		if (map->map[0][i] != '1' || map->map[map->height - 1][i] != '1')
-		{
-			ft_printf("Error\nMap is not enclosed by walls\n");
-			return (false);
-		}
-	}
-	i = 0;
-	while (++i < map->height - 1)
-	{
-		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
-		{
-			ft_printf("Error\nMap is not enclosed by walls\n");
-			return (false);
-		}
-	}
-	return (true);
-}
-
-static bool	parse_map_components(t_map *map)
-{
-	int			i;
-	int			j;
-	t_map_comp	c;
-
-	j = -1;
-	c = (t_map_comp){0};
-	while (map->map[++j] != NULL)
-	{
-		i = -1;
-		while (map->map[j][++i] != '\0')
-		{
-			if (!in_charset(map->map[j][i], "01CEP"))
-			{
-				ft_printf("Error\nMap contains an invalid character\n");
-				return (false);
-			}
-			else if (map->map[j][i] == '1')
-				c.wall++;
-			else if (map->map[j][i] == 'P')
-				c.player++;
-			else if (map->map[j][i] == 'C')
-				c.collectible++;
-			else if (map->map[j][i] == 'E')
-				c.exit++;
-		}
-	}
-	if (c.exit != 1 || c.player != 1 || c.wall < 1 || c.collectible < 1)
-	{
-		ft_printf("Error\nMap is not properly constructed\n");
-		return (false);
-	}
-	return (true);
 }
 
 static bool	parse_map(t_map *map, char *buffer, const char *filename)

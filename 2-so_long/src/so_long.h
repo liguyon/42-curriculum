@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 08:57:54 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:06 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef uint32_t	t_color;
 # define CONF_WINDOW_TITLE "fdf"
 # define CONF_FPS 60
 # define CONF_TILE_SIZE 64
-# define CONF_COLOR_BG 0xFF151515
+# define CONF_COLOR_BG 0x26232B
 # define CONF_ARENA_SIZE 1e8
 
 /* map
@@ -164,6 +164,9 @@ typedef struct s_data {
 /* parse
 ================================================================================
 */
+bool		parse_map_dimensions(t_map *map);
+bool		parse_map_walls(t_map *map);
+bool		parse_map_components(t_map *map);
 bool		parse(t_map *map, const char *filename);
 
 /* graphics
