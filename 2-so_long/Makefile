@@ -34,7 +34,8 @@ SRC	= main.c \
 	  sprite.c \
 	  load.c \
 	  render.c \
-	  parse.c
+	  parse.c \
+	  parse1.c
 
 
 ##############

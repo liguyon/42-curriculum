@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 10:34:06 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/12 07:04:45 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,20 @@ typedef struct s_timer {
 ================================================================================
 */
 
-typedef struct s_sprite {
+typedef struct s_atlas {
 	int	*raster;
+	int	tile_size;
 	int	width;
 	int	height;
-	int	scale;
+}	t_atlas;
+
+typedef struct s_sprite {
+	t_atlas	*atlas;
+	int		atlas_x;
+	int		atlas_y;
+	int		atlas_w;
+	int		atlas_h;
+	int		scale;
 }	t_sprite;
 
 /* entity (rigid body)
@@ -152,6 +161,7 @@ typedef struct s_data {
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_entity	*player;
+	t_atlas		**atlases;
 	int			mvts;
 }	t_data;
 
@@ -193,7 +203,7 @@ void		inputs_bind(t_data *data);
 /* sprite
 ================================================================================
 */
-t_sprite	*sprite_load(t_data *data, char *filename);
+t_atlas		*atlas_load(t_data *data, char *filename);
 void		sprite_render(t_data *data, t_sprite *sprite, int x, int y);
 int			timer_get_ticks(t_timer *timer);
 

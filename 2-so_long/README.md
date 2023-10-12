@@ -53,3 +53,4 @@ Shortcut | Action
 
 - [Medieval fantasy character sprite](https://opengameart.org/content/lpc-medieval-fantasy-character-sprites) by [wulax](https://opengameart.org/users/wulax), Creative Commons license
 - [Dungeon Tileset](https://opengameart.org/content/dungeon-tileset) by [Buch](https://opengameart.org/users/buch)
+- [Good Neighbors font](https://opengameart.org/content/good-neighbors-pixel-font) by [Clint Bellanger](https://opengameart.org/users/clint-bellanger)

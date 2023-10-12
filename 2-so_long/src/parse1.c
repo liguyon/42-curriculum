@@ -6,11 +6,12 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 10:43:37 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/11 11:26:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libft.h"
 
 bool	parse_map_dimensions(t_map *map)
 {
