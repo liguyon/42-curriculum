@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:27:25 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/12 07:54:44 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/13 13:33:10 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_atlas	*atlas_load(t_data *data, char *filename)
 	ft_memcpy(atlas->raster, img.raster,
 		atlas->width * atlas->height * sizeof(*atlas->raster));
 	mlx_destroy_image(data->grph->mlx_ptr, img.ptr);
-	logger(LOGGER_INFO, "loaded atlas [file: '%s']", filename);
+	logger(LOGGER_INFO, "loaded atlas [file:'%s', dimensions:%dx%d]", filename, atlas->width, atlas->height);
 	return (atlas);
 }
 

@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:12:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/12 07:22:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/13 11:27:18 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	run(t_data *data, const char *map_filename)
 	timer_init(data->timer);
 	map = (t_map){0};
 	data->map = &map;
-	data->atlases = arena_alloc(data->arena, 1 * sizeof(*data->atlases));
+	data->atlases = arena_alloc(data->arena, 7 * sizeof(*data->atlases));
 	if (load(data, map_filename) == true)
 	{
 		inputs_bind(data);
