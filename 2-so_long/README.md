@@ -23,7 +23,7 @@ Kyky is transported during his sleep to a dungeon. Naked and powerless, he must 
 
 - **Patrolling enemies**: Enemies will patrol their assigned areas. If Kyky enters their line of sight, they will pursue him. 
 
-In so_long, touching enemies is fatal. The goal is to collect all the coins while staying hidden frome enemies. Use the game mechanics to your advantage to help Kyky escape and regain his dignity.
+In so_long, touching enemies is fatal. The goal is to collect all the coins while staying hidden from enemies. Use the game mechanics to your advantage to help Kyky escape and regain his dignity.
 
 ## Build
 
