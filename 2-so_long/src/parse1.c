@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 11:26:31 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/13 17:19:15 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ bool	parse_map_components(t_map *map)
 		ft_printf("Error\nMap is not properly constructed\n");
 		return (false);
 	}
+	map->objectives = c.exit + c.collectible + c.player;
 	return (true);
 }

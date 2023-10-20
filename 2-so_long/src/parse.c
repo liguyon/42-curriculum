@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:02:32 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/11 10:39:42 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/20 13:08:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,37 @@ static bool	parse_file(const char *filename, char *buffer)
 	return (stream.read_success);
 }
 
+bool	cell_is_walkable(t_map *map, int x, int y)
+{
+	return (map->map[y][x] == '0'
+		|| map->map[y][x] == 'C'
+		|| map->map[y][x] == 'P');
+}
+
+// bool	parse_map_path(t_map *map)
+// {
+// 	int		i;
+// 	int		j;
+// 	int		reachable;
+// 	char	**map_tmp;
+
+// 	map_tmp = 
+// 	reachable = 0;
+// 	j = 0;
+// 	while (++j < map->height)
+// 	{
+// 		i = 0;
+// 		while (++i < map->width)
+// 		{
+// 			 if (map->map[j][i] == 'C' || map->map[j][i] == 'P' || map->map[j][i] == 'E')
+// 			 {
+// 				if ()
+// 			 }
+// 		}
+// 	}
+// 	return (true);
+// }
+
 static bool	parse_map(t_map *map, char *buffer, const char *filename)
 {
 	if (ft_strlen(buffer) < 1)
@@ -61,6 +92,8 @@ static bool	parse_map(t_map *map, char *buffer, const char *filename)
 		return (false);
 	if (parse_map_walls(map) == false)
 		return (false);
+	// if (parse_map_path(map) == false)
+	// 	return (false);
 	logger(LOGGER_INFO, "loaded map [file:'%s', dimensions:%dx%d]",
 		filename, map->width, map->height);
 	return (true);

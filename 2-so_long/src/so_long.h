@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/12 07:04:45 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/20 13:34:30 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,17 @@ typedef uint32_t	t_color;
 /* map
 ================================================================================
 */
+# define MAP_FLOOR '0'
+# define MAP_WALL '1'
+# define MAP_LOOT 'C'
+# define MAP_EXIT 'E'
+# define MAP_PLAYER 'P'
+
 typedef struct s_map {
 	char	**map;
 	int		width;
 	int		height;
+	int		objectives;
 }	t_map;
 
 /* parse
@@ -108,6 +115,9 @@ typedef struct s_timer {
 /* sprite
 ================================================================================
 */
+
+# define ATLAS_TILES 4
+# define ATLAS_COUNT 6
 
 typedef struct s_atlas {
 	int	*raster;
