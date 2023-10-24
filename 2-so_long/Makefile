@@ -10,9 +10,7 @@ CFLAGS	= -Wall -Wextra -Werror \
 	-O3 \
 	-gdwarf-2
 
-CLFLAGS	= -L$(LIBDIR)/$(LIBFTDIR) -lft \
-	-lm \
-	-Llib/minilibx-linux -lmlx -lXext -lX11
+CLFLAGS	= -lXext -lX11
 
 ##############
 #
@@ -45,32 +43,31 @@ SRC	= main.c \
 ##############
 LIBDIR	= lib
 LIBFTDIR	= 42-libft
-LIBFT	= libft.a
+LIBFT	= $(LIBDIR)/$(LIBFTDIR)/libft.a
 LIBMLXDIR	= minilibx-linux
-LIBMLX	= libmlx.a
+LIBMLX	= $(LIBDIR)/$(LIBMLXDIR)/libmlx.a
 
 ##############
 #
 # Build
 #
 ##############
+
 .PHONY:	all clean fclean re
 
-$(NAME):	all
+all:	$(NAME)
 
-all:	$(LIBFT) $(LIBMLX) release
-
-release:	$(OBJ)
+$(NAME): $(OBJ) $(LIBMLX) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $^ $(CLFLAGS)
 
 clean:
 	rm -rf $(OBJDIR)
-	@make -C $(LIBDIR)/$(LIBFTDIR) clean
-	@make -C $(LIBDIR)/$(LIBMLXDIR) clean
+	@make -sC $(LIBDIR)/$(LIBFTDIR) clean
+	@make -sC $(LIBDIR)/$(LIBMLXDIR) clean
 
 fclean:	clean
 	rm -f $(NAME)
-	@make -C $(LIBDIR)/$(LIBFTDIR) fclean
+	@make -sC $(LIBDIR)/$(LIBFTDIR) fclean
 
 re:	fclean all
 
@@ -88,4 +85,4 @@ $(LIBFT):
 	@make -sC $(LIBDIR)/$(LIBFTDIR)
 
 $(LIBMLX):
-	@make -C $(LIBDIR)/$(LIBMLXDIR)
+	@make -sC $(LIBDIR)/$(LIBMLXDIR)
