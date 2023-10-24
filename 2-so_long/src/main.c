@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:12:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/20 14:03:34 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:44:47 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main_loop(t_data *data)
 	last_time = timer_get_ticks(data->timer);
 	dt = 1e3 / CONF_FPS;
 	// update(data, dt);
-	graphics_clear(data->grph, CONF_COLOR_BG);
+	graphics_clear(data->grph, COLOR_BG);
 	render(data);
 	graphics_present(data->grph);
 	return (0);
@@ -53,14 +53,13 @@ void	run(t_data *data, const char *map_filename)
 	timer_init(data->timer);
 	map = (t_map){0};
 	data->map = &map;
-	data->atlases = arena_alloc(data->arena, ATLAS_COUNT * sizeof(*data->atlases));
 	if (load(data, map_filename) == true)
 	{
 		inputs_bind(data);
 		mlx_loop_hook(data->grph->mlx_ptr, main_loop, data);
 		mlx_loop(data->grph->mlx_ptr);
-		for (int i = 0; i < map.height; i++)
-			free(map.map[i]);
+		for (int i = 0; i < data->map->height; i++)
+			free(data->map->map[i]);
 		free(data->map->map);
 	}
 	graphics_terminate(data->grph);
@@ -75,7 +74,6 @@ int	main(int argc, char **argv)
 		ft_printf("\nusage: ./so_long path/to/file.ber\n\n");
 		return (0);
 	}
-	(void)argv;
 	data = (t_data){0};
 	data.arena = arena_init(CONF_ARENA_SIZE);
 	if (data.arena == NULL)

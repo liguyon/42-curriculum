@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:34:18 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/03 17:01:58 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:47:55 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 static void	inputs_process_player(int keycode, t_data *data)
 {
 	if (keycode == XK_a || keycode == XK_A)
-		data->player->pos_x++;
+		data->player->pos_x -= PLAYER_MOVESPD;
 	else if (keycode == XK_d || keycode == XK_D)
-		data->player->pos_x--;
+		data->player->pos_x += PLAYER_MOVESPD;
 	else if (keycode == XK_w || keycode == XK_W)
-		data->player->pos_y++;
+		data->player->pos_y -= PLAYER_MOVESPD;
 	else if (keycode == XK_s || keycode == XK_S)
-		data->player->pos_y--;
+		data->player->pos_y += PLAYER_MOVESPD;
 }
 
 static int	inputs_process_keyboard(int keycode, t_data *data)

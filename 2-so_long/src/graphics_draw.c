@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_draw.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:22:30 by liguyon           #+#    #+#             */
-/*   Updated: 2023/09/29 18:12:51 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/24 18:44:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	graphics_draw_pixel(t_graphics *grph, int x, int y, t_color color)
 		grph->back_buffer->raster[y * CONF_WINDOW_WIDTH + x] = color;
 }
 
-void	graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color)
+void	graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color, int border_size)
 {
 	int	i;
 	int	j;
@@ -30,6 +30,9 @@ void	graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color)
 	{
 		i = -1;
 		while (++i < rect.width)
-			graphics_draw_pixel(grph, rect.x + i, rect.y + j, color);
+		{
+			if (j < border_size || j > rect.height - border_size - 1 || i < border_size || i > rect.width - border_size - 1)
+				graphics_draw_pixel(grph, rect.x + i, rect.y + j, color);
+		}
 	}
 }

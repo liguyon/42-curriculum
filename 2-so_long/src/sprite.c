@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:27:25 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/13 13:33:10 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/21 13:10:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,28 @@ t_atlas	*atlas_load(t_data *data, char *filename)
 	return (atlas);
 }
 
-void	sprite_render(t_data *data, t_sprite *sprite, int x, int y)
-{
-	int		i;
-	int		j;
-	t_rect	rect;
-	t_color	color;
+// void	sprite_render(t_data *data, t_sprite *sprite, int x, int y)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_rect	rect;
+// 	t_color	color;
 
-	j = -1;
-	while (++j < sprite->atlas_h)
-	{
-		i = -1;
-		while (++i < sprite->atlas_w)
-		{
-			color = sprite->atlas->raster[
-				(j + sprite->atlas_y) * sprite->atlas->width + i + sprite->atlas_x];
-			if (color == 0xFF00FF)
-				continue ;
-			rect.width = sprite->scale;
-			rect.height = sprite->scale;
-			rect.x = x + i * sprite->scale;
-			rect.y = y + j * sprite->scale;
-			graphics_draw_rect(data->grph, rect, color);
-		}
-	}
-}
+// 	j = -1;
+// 	while (++j < sprite->atlas_h)
+// 	{
+// 		i = -1;
+// 		while (++i < sprite->atlas_w)
+// 		{
+// 			color = sprite->atlas->raster[
+// 				(j + sprite->atlas_y) * sprite->atlas->width + i + sprite->atlas_x];
+// 			if (color == 0xFF00FF)
+// 				continue ;
+// 			rect.width = sprite->scale;
+// 			rect.height = sprite->scale;
+// 			rect.x = x + i * sprite->scale;
+// 			rect.y = y + j * sprite->scale;
+// 			graphics_draw_rect(data->grph, rect, color);
+// 		}
+// 	}
+// }//

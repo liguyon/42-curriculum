@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/20 13:34:30 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:47:01 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@
 
 typedef uint32_t	t_color;
 
+# include "colorscheme.h"
+
 /* Config
 ================================================================================
 */
 # define CONF_WINDOW_WIDTH 1600
-# define CONF_WINDOW_HEIGHT 900
-# define CONF_WINDOW_TITLE "fdf"
+# define CONF_GAME_WIDTH 1440
+# define CONF_WINDOW_HEIGHT 912
+# define CONF_WINDOW_TITLE "so_long"
 # define CONF_FPS 60
-# define CONF_TILE_SIZE 64
-# define CONF_COLOR_BG 0x26232B
+# define CONF_TILE_SIZE 48
 # define CONF_ARENA_SIZE 1e8
 
 /* map
@@ -50,6 +52,8 @@ typedef struct s_map {
 	int		width;
 	int		height;
 	int		objectives;
+	int		x_offset;
+	int		y_offset;
 }	t_map;
 
 /* parse
@@ -107,7 +111,6 @@ typedef struct s_rect {
 /* timer
 ================================================================================
 */
-
 typedef struct s_timer {
 	long	time_start;
 }	t_timer;
@@ -115,9 +118,6 @@ typedef struct s_timer {
 /* sprite
 ================================================================================
 */
-
-# define ATLAS_TILES 4
-# define ATLAS_COUNT 6
 
 typedef struct s_atlas {
 	int	*raster;
@@ -135,32 +135,27 @@ typedef struct s_sprite {
 	int		scale;
 }	t_sprite;
 
-/* entity (rigid body)
+/* player
 ================================================================================
 */
-
 enum {
-	TYPE_PLAYER,
-	TYPE_ENNEMY,
-	TYPE_LOOT
+	PLAYER_IDLE,
+	PLAYER_MOVE,
+	PLAYER_JUMP,
+	PLAYER_DEAD
 };
 
-enum {
-	STATE_STANDING,
-	STATE_WALKING,
-	STATE_FIGHTING,
-	STATE_DIYING,
-};
+// player movespeed (in pixels / input)
+# define PLAYER_MOVESPD 3
 
-typedef struct s_entity {
-	int		type;
-	int		width;
-	int		height;
-	int		pos_x;
-	int		pos_y;
-	int		state;
-	int		state_anim;
-}	t_entity;
+typedef struct s_player
+{
+	int	state;
+	int	mvts;
+	int	collected;
+	int	pos_x;
+	int	pos_y;
+}	t_player;
 
 /* data
 ================================================================================
@@ -170,9 +165,7 @@ typedef struct s_data {
 	t_map		*map;
 	t_graphics	*grph;
 	t_timer		*timer;
-	t_entity	*player;
-	t_atlas		**atlases;
-	int			mvts;
+	t_player	*player;
 }	t_data;
 
 /*
@@ -197,14 +190,14 @@ void		graphics_terminate(t_graphics *grph);
 void		graphics_clear(t_graphics *grph, t_color color);
 void		graphics_present(t_graphics *grph);
 void		graphics_draw_pixel(t_graphics *grph, int x, int y, t_color color);
-void		graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color);
+void		graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color, int border_size);
 
 /* timer
 ================================================================================
 */
-
 void		timer_init(t_timer *timer);
 void		timer_delay(int ms);
+
 /* inputs
 ================================================================================
 */
@@ -215,6 +208,10 @@ void		inputs_bind(t_data *data);
 */
 t_atlas		*atlas_load(t_data *data, char *filename);
 void		sprite_render(t_data *data, t_sprite *sprite, int x, int y);
+
+/* timer
+================================================================================
+*/
 int			timer_get_ticks(t_timer *timer);
 
 /* load

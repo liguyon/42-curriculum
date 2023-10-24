@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/13 17:19:15 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/24 19:23:54 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	parse_map_dimensions(t_map *map)
 	int	i;
 
 	map->width = ft_strlen(map->map[0]);
-	if (map->width * CONF_TILE_SIZE > CONF_WINDOW_WIDTH - 2 * CONF_TILE_SIZE
+	if (map->width > CONF_GAME_WIDTH
 		|| map->height * CONF_TILE_SIZE > CONF_WINDOW_HEIGHT)
 	{
 		ft_printf("Error\nMap is too big\n");
