@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:47:01 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 14:59:08 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,15 @@
 
 typedef uint32_t	t_color;
 
-# include "colorscheme.h"
+#  define COLOR_BG 0x0F0F0F
+#  define COLOR_GRID 0x1B1B1B
+#  define COLOR_FLOOR 0x0F0F0F
+#  define COLOR_WALL 0xFF00FF
+#  define COLOR_LOOT 0xFFFF00
+#  define COLOR_PLAYER 0xFF0000
+#  define COLOR_EXIT_OFF 0x306030
+#  define COLOR_EXIT_ON 0x00FF00
+#  define COLOR_ENEMY 0x000000
 
 /* Config
 ================================================================================
@@ -46,6 +54,7 @@ typedef uint32_t	t_color;
 # define MAP_LOOT 'C'
 # define MAP_EXIT 'E'
 # define MAP_PLAYER 'P'
+# define MAP_ENEMY 'M'
 
 typedef struct s_map {
 	char	**map;
@@ -80,6 +89,39 @@ typedef struct s_map_comp {
 	int	exit;
 }	t_map_comp;
 
+/* maths
+================================================================================
+*/
+
+# ifndef M_PI
+#  define M_PI 3.14159265359
+# endif
+
+typedef struct s_pixel {
+	int		x;
+	int		y;
+	t_color	color;
+}	t_pixel;
+
+typedef struct s_triangle {
+	t_pixel	p1;
+	t_pixel	p2;
+	t_pixel	p3;
+}	t_triangle;
+
+typedef struct s_rect {
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+}	t_rect;
+
+typedef struct s_circle {
+	int	x;
+	int	y;
+	int	radius;
+}	t_circle;
+
 /* graphics
 ================================================================================
 */
@@ -101,12 +143,15 @@ typedef struct s_graphics
 	t_mlx_image	*back_buffer;
 }	t_graphics;
 
-typedef struct s_rect {
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-}	t_rect;
+typedef struct s_dda {
+	int		delta_x;
+	int		delta_y;
+	int		side_length;
+	float	x_inc;
+	float	y_inc;
+	float	current_x;
+	float	current_y;
+}	t_dda;
 
 /* timer
 ================================================================================
@@ -146,7 +191,7 @@ enum {
 };
 
 // player movespeed (in pixels / input)
-# define PLAYER_MOVESPD 3
+# define PLAYER_MOVESPD 5
 
 typedef struct s_player
 {
@@ -166,6 +211,7 @@ typedef struct s_data {
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_player	*player;
+	bool		locked;
 }	t_data;
 
 /*
@@ -191,7 +237,9 @@ void		graphics_clear(t_graphics *grph, t_color color);
 void		graphics_present(t_graphics *grph);
 void		graphics_draw_pixel(t_graphics *grph, int x, int y, t_color color);
 void		graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color, int border_size);
-
+void		graphics_draw_line(t_graphics *grph, t_pixel p0, t_pixel p1);
+void		graphics_draw_triangle(t_graphics *grph, t_triangle t);
+void		graphics_draw_circle(t_graphics *grph, t_circle c, t_color color);
 /* timer
 ================================================================================
 */
@@ -230,5 +278,5 @@ void		render(t_data *data);
 void		*malloc_log(size_t size, char *file, int line);
 void		*calloc_log(size_t nmemb, size_t size, char *file, int line);
 bool		in_charset(char c, const char *charset);
-
+int	absi(int x);
 #endif

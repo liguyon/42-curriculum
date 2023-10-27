@@ -10,7 +10,7 @@ CFLAGS	= -Wall -Wextra -Werror \
 	-O3 \
 	-gdwarf-2
 
-CLFLAGS	= -lXext -lX11
+CLFLAGS	= -lXext -lX11 -lm
 
 ##############
 #
@@ -33,7 +33,8 @@ SRC	= main.c \
 	  load.c \
 	  render.c \
 	  parse.c \
-	  parse1.c
+	  parse1.c \
+	  maths.c
 
 
 ##############

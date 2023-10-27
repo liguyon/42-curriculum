@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:50:15 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:45:36 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 14:51:20 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ bool	load(t_data *data, const char *map_filename)
 		{
 			if (data->map->map[j][i] == MAP_PLAYER)
 			{
-				player->pos_x = i * CONF_TILE_SIZE + data->map->x_offset;
-				player->pos_y = j * CONF_TILE_SIZE + data->map->y_offset;
+				player->pos_x = i * CONF_TILE_SIZE + data->map->x_offset + CONF_TILE_SIZE / 2;
+				player->pos_y = j * CONF_TILE_SIZE + data->map->y_offset + CONF_TILE_SIZE / 2;
 			}
 		}
 	}

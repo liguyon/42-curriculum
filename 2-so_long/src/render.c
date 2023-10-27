@@ -6,14 +6,38 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:50:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:44:07 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 15:00:07 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libft.h"
 
-void	render_set(t_data *data)
+static void	render_exit(t_data *data, int x, int y)
+{
+	t_triangle	t;
+	t_color		col;
+
+	if (data->locked == false)
+		col = COLOR_EXIT_OFF;
+	else
+		col = COLOR_EXIT_ON;
+	
+	t = (t_triangle){
+		.p1 = (t_pixel){.color = col, .x = x + CONF_TILE_SIZE / 2, .y = y + 3},
+		.p2 = (t_pixel){.color = col, .x = x + 4, .y = y + CONF_TILE_SIZE - 4},
+		.p3 = (t_pixel){.color = col, .x = x + CONF_TILE_SIZE - 4, .y = y + CONF_TILE_SIZE - 4}
+	};
+	graphics_draw_triangle(data->grph, t);
+	t = (t_triangle){
+		.p1 = (t_pixel){.color = col, .x = x + CONF_TILE_SIZE / 2, .y = y + 4},
+		.p2 = (t_pixel){.color = col, .x = x + 4, .y = y + CONF_TILE_SIZE - 4},
+		.p3 = (t_pixel){.color = col, .x = x + CONF_TILE_SIZE - 4, .y = y + CONF_TILE_SIZE - 4}
+	};
+	graphics_draw_triangle(data->grph, t);
+}
+
+static void	render_set(t_data *data)
 {
 	int	i;
 	int	j;
@@ -30,12 +54,7 @@ void	render_set(t_data *data)
 					(t_rect){.width = CONF_TILE_SIZE - 1, .height = CONF_TILE_SIZE - 1, .x = i * CONF_TILE_SIZE + data->map->x_offset + 1, .y = j * CONF_TILE_SIZE + data->map->y_offset + 1},
 					COLOR_WALL, 2);
 			else if (data->map->map[j][i] == MAP_EXIT)
-			{
-				graphics_draw_rect(
-					data->grph,
-					(t_rect){.width = CONF_TILE_SIZE / 2, .height = 3 * CONF_TILE_SIZE / 4, .x = i * CONF_TILE_SIZE + data->map->x_offset + CONF_TILE_SIZE / 4, .y = j * CONF_TILE_SIZE + data->map->y_offset + CONF_TILE_SIZE / 8},
-					COLOR_EXIT_OFF, 2);
-			}
+				render_exit(data, i * CONF_TILE_SIZE + data->map->x_offset, j * CONF_TILE_SIZE + data->map->y_offset);
 			else if (data->map->map[j][i] == MAP_LOOT)
 			{
 				graphics_draw_rect(
@@ -47,7 +66,7 @@ void	render_set(t_data *data)
 	}
 }
 
-void	render_grid(t_data *data)
+static void	render_grid(t_data *data)
 {
 	int	i;
 	int	j;
@@ -65,12 +84,14 @@ void	render_grid(t_data *data)
 	}
 }
 
-void	render_player(t_data *data)
+static void	render_player(t_data *data)
 {
-	graphics_draw_rect(
-		data->grph,
-			(t_rect){.width = CONF_TILE_SIZE - 1, .height = CONF_TILE_SIZE - 1, .x = data->player->pos_x, .y = data->player->pos_y + 1},
-			COLOR_PLAYER, 2);
+	t_circle	c;
+
+	c = (t_circle){.radius = CONF_TILE_SIZE / 2 - 2, .x = data->player->pos_x, .y = data->player->pos_y};
+	graphics_draw_circle(data->grph, c, COLOR_PLAYER);
+	c = (t_circle){.radius = CONF_TILE_SIZE / 2 - 1, .x = data->player->pos_x, .y = data->player->pos_y};
+	graphics_draw_circle(data->grph, c, COLOR_PLAYER);
 }
 
 void	render(t_data *data)

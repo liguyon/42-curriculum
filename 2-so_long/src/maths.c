@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colorscheme.h                                      :+:      :+:    :+:   */
+/*   maths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 15:22:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:38:30 by liguyon          ###   ########.fr       */
+/*   Created: 2023/10/25 10:16:53 by liguyon           #+#    #+#             */
+/*   Updated: 2023/10/25 10:17:24 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLORSCHEME_H
-# define COLORSCHEME_H
+#include "so_long.h"
 
-#  define COLOR_BG 0x0F0F0F
-#  define COLOR_GRID 0x1B1B1B
-#  define COLOR_FLOOR 0x0F0F0F
-#  define COLOR_WALL 0xFF00FF
-#  define COLOR_LOOT 0xFFFF00
-#  define COLOR_PLAYER 0xFF0000
-#  define COLOR_EXIT_OFF 0x090900
-#  define COLOR_EXIT_ON 0x00FF00
-#  define COLOR_ENEMY 0x000000
-
-#endif
+/*
+ * (int) Absolute value
+*/
+int	absi(int x)
+{
+	if (x >= 0)
+		return (x);
+	else
+		return (-x);
+}
