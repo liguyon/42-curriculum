@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:34:18 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:47:55 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 20:05:11 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,31 @@
 
 static void	inputs_process_player(int keycode, t_data *data)
 {
-	if (keycode == XK_a || keycode == XK_A)
-		data->player->pos_x -= PLAYER_MOVESPD;
-	else if (keycode == XK_d || keycode == XK_D)
-		data->player->pos_x += PLAYER_MOVESPD;
-	else if (keycode == XK_w || keycode == XK_W)
-		data->player->pos_y -= PLAYER_MOVESPD;
-	else if (keycode == XK_s || keycode == XK_S)
-		data->player->pos_y += PLAYER_MOVESPD;
+	int	x;
+	int	y;
+
+	x = data->player->pos_x;
+	y = data->player->pos_y;
+	if (keycode == XK_a && data->map->map[y][x - 1] != MAP_WALL)
+	{
+		data->player->pos_x--;
+		data->player->mvts++;
+	}
+	else if (keycode == XK_d && data->map->map[y][x + 1] != MAP_WALL)
+	{
+		data->player->pos_x++;
+		data->player->mvts++;
+	}
+	else if (keycode == XK_w && data->map->map[y - 1][x] != MAP_WALL)
+	{
+		data->player->pos_y--;
+		data->player->mvts++;
+	}
+	else if (keycode == XK_s & data->map->map[y + 1][x] != MAP_WALL)
+	{
+		data->player->pos_y++;
+		data->player->mvts++;
+	}
 }
 
 static int	inputs_process_keyboard(int keycode, t_data *data)

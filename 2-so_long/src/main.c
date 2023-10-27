@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:12:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:44:47 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 20:21:13 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-// void	update(t_data *data, double dt)
-// {
-// 	data->sprite->pos_x += 0 * dt;
-// }
+void	update(t_data *data)
+{
+	if (data->map->map[data->player->pos_y][data->player->pos_x] == MAP_LOOT)
+	{
+		data->player->collected++;
+		data->map->map[data->player->pos_y][data->player->pos_x] = MAP_FLOOR;
+	}
+	if (data->unlocked == false)
+	{
+		if (data->player->collected == data->map->collectibles)
+			data->unlocked = true;
+	}
+}
 
 int	main_loop(t_data *data)
 {
@@ -31,35 +40,32 @@ int	main_loop(t_data *data)
 		timer_delay(time_to_wait);
 	last_time = timer_get_ticks(data->timer);
 	dt = 1e3 / CONF_FPS;
-	// update(data, dt);
+	update(data);
 	graphics_clear(data->grph, COLOR_BG);
 	render(data);
 	graphics_present(data->grph);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, CONF_GAME_WIDTH + CONF_TILE_SIZE, 800, 0xFFFFFF, "Controls");
 	return (0);
 }
 
 void	run(t_data *data, const char *map_filename)
 {
-	t_graphics	*grph;
-	t_timer		timer;
-	t_map		map;
+	int	j;
 
-	grph = arena_alloc(data->arena, sizeof(*grph));
-	data->grph = grph;
+	data->grph = arena_alloc(data->arena, sizeof(*data->grph));
 	if (graphics_init(data) == false)
 		return ;
-	timer = (t_timer){0};
-	data->timer = &timer;
+	data->timer = arena_alloc(data->arena, sizeof(*data->timer));
 	timer_init(data->timer);
-	map = (t_map){0};
-	data->map = &map;
+	data->map = arena_alloc(data->arena, sizeof(*data->map));
 	if (load(data, map_filename) == true)
 	{
 		inputs_bind(data);
 		mlx_loop_hook(data->grph->mlx_ptr, main_loop, data);
 		mlx_loop(data->grph->mlx_ptr);
-		for (int i = 0; i < data->map->height; i++)
-			free(data->map->map[i]);
+		j = -1;
+		while (++j < data->map->height)
+			free(data->map->map[j]);
 		free(data->map->map);
 	}
 	graphics_terminate(data->grph);
@@ -67,21 +73,23 @@ void	run(t_data *data, const char *map_filename)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data	*data;
+	void	*arena;
 
 	if (argc != 2)
 	{
 		ft_printf("\nusage: ./so_long path/to/file.ber\n\n");
 		return (0);
 	}
-	data = (t_data){0};
-	data.arena = arena_init(CONF_ARENA_SIZE);
-	if (data.arena == NULL)
+	arena = arena_init(CONF_ARENA_SIZE);
+	if (arena == NULL)
 	{
 		logger(LOGGER_CRIT, "failed to allocate memory");
 		return (EXIT_FAILURE);
 	}
-	run(&data, argv[1]);
-	arena_destroy(data.arena);
+	data = arena_alloc(arena, sizeof(*data));
+	data->arena = arena;
+	run(data, argv[1]);
+	arena_destroy(arena);
 	return (0);
 }

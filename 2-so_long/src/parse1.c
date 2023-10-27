@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/24 19:23:54 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 17:05:26 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ bool	parse_map_components(t_map *map)
 		return (false);
 	}
 	map->objectives = c.exit + c.collectible + c.player;
+	map->collectibles = c.collectible;
 	return (true);
 }

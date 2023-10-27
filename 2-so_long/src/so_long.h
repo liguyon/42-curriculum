@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 14:59:08 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/27 19:29:30 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 
 typedef uint32_t	t_color;
 
-#  define COLOR_BG 0x0F0F0F
-#  define COLOR_GRID 0x1B1B1B
-#  define COLOR_FLOOR 0x0F0F0F
-#  define COLOR_WALL 0xFF00FF
-#  define COLOR_LOOT 0xFFFF00
-#  define COLOR_PLAYER 0xFF0000
-#  define COLOR_EXIT_OFF 0x306030
-#  define COLOR_EXIT_ON 0x00FF00
-#  define COLOR_ENEMY 0x000000
+# define COLOR_BG 0x0F0F0F
+# define COLOR_GRID 0x1B1B1B
+# define COLOR_FLOOR 0x0F0F0F
+# define COLOR_WALL 0xFF00FF
+# define COLOR_LOOT 0xFFFF00
+# define COLOR_PLAYER 0xFF0000
+# define COLOR_EXIT_OFF 0x306030
+# define COLOR_EXIT_ON 0x00FF00
+# define COLOR_ENEMY 0x000000
 
 /* Config
 ================================================================================
@@ -61,6 +61,7 @@ typedef struct s_map {
 	int		width;
 	int		height;
 	int		objectives;
+	int		collectibles;
 	int		x_offset;
 	int		y_offset;
 }	t_map;
@@ -151,6 +152,7 @@ typedef struct s_dda {
 	float	y_inc;
 	float	current_x;
 	float	current_y;
+	int		i;
 }	t_dda;
 
 /* timer
@@ -159,26 +161,6 @@ typedef struct s_dda {
 typedef struct s_timer {
 	long	time_start;
 }	t_timer;
-
-/* sprite
-================================================================================
-*/
-
-typedef struct s_atlas {
-	int	*raster;
-	int	tile_size;
-	int	width;
-	int	height;
-}	t_atlas;
-
-typedef struct s_sprite {
-	t_atlas	*atlas;
-	int		atlas_x;
-	int		atlas_y;
-	int		atlas_w;
-	int		atlas_h;
-	int		scale;
-}	t_sprite;
 
 /* player
 ================================================================================
@@ -189,9 +171,6 @@ enum {
 	PLAYER_JUMP,
 	PLAYER_DEAD
 };
-
-// player movespeed (in pixels / input)
-# define PLAYER_MOVESPD 5
 
 typedef struct s_player
 {
@@ -211,7 +190,7 @@ typedef struct s_data {
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_player	*player;
-	bool		locked;
+	bool		unlocked;
 }	t_data;
 
 /*
@@ -219,6 +198,11 @@ typedef struct s_data {
 								functions
 ================================================================================
 */
+
+/* maths
+================================================================================
+*/
+int			absi(int x);
 
 /* parse
 ================================================================================
@@ -236,7 +220,8 @@ void		graphics_terminate(t_graphics *grph);
 void		graphics_clear(t_graphics *grph, t_color color);
 void		graphics_present(t_graphics *grph);
 void		graphics_draw_pixel(t_graphics *grph, int x, int y, t_color color);
-void		graphics_draw_rect(t_graphics *grph, t_rect rect, t_color color, int border_size);
+void		graphics_draw_rect(t_graphics *grph, t_rect rect, \
+				t_color color, int border_size);
 void		graphics_draw_line(t_graphics *grph, t_pixel p0, t_pixel p1);
 void		graphics_draw_triangle(t_graphics *grph, t_triangle t);
 void		graphics_draw_circle(t_graphics *grph, t_circle c, t_color color);
@@ -250,12 +235,6 @@ void		timer_delay(int ms);
 ================================================================================
 */
 void		inputs_bind(t_data *data);
-
-/* sprite
-================================================================================
-*/
-t_atlas		*atlas_load(t_data *data, char *filename);
-void		sprite_render(t_data *data, t_sprite *sprite, int x, int y);
 
 /* timer
 ================================================================================
@@ -278,5 +257,5 @@ void		render(t_data *data);
 void		*malloc_log(size_t size, char *file, int line);
 void		*calloc_log(size_t nmemb, size_t size, char *file, int line);
 bool		in_charset(char c, const char *charset);
-int	absi(int x);
+
 #endif
