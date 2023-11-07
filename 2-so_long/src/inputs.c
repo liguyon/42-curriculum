@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:34:18 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 20:05:11 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/07 05:43:37 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	inputs_process_player(int keycode, t_data *data)
 	int	x;
 	int	y;
 
-	x = data->player->pos_x;
-	y = data->player->pos_y;
+	player_get_map_position(data, &x, &y);
 	if (keycode == XK_a && data->map->map[y][x - 1] != MAP_WALL)
 	{
 		data->player->pos_x--;
@@ -44,7 +43,7 @@ static void	inputs_process_player(int keycode, t_data *data)
 	}
 }
 
-static int	inputs_process_keyboard(int keycode, t_data *data)
+static int	inputs_process_keypress(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		mlx_loop_end(data->grph->mlx_ptr);
@@ -64,5 +63,7 @@ void	inputs_bind(t_data *data)
 	mlx_hook(data->grph->win_ptr, DestroyNotify, StructureNotifyMask,
 		inputs_process_cross, data->grph);
 	mlx_hook(data->grph->win_ptr, KeyPress, KeyPressMask,
-		inputs_process_keyboard, data);
+		inputs_process_keypress, data);
+	// mlx_hook(data->grph->win_ptr, KeyRelease, KeyReleaseMask,
+	// 	inputs_process_keyrelease, data);
 }

@@ -1,6 +1,6 @@
 # so_long (WIP)
 
-Our initial dive into graphics programming with a 2D top-down minigame.
+Our initial dive into graphics programming with a 2D minigame.
 
 ## Overview
 

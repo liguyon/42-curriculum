@@ -29,12 +29,12 @@ SRC	= main.c \
 	  graphics_render.c \
 	  graphics_draw.c \
 	  inputs.c \
-	  sprite.c \
 	  load.c \
 	  render.c \
 	  parse.c \
 	  parse1.c \
-	  maths.c
+	  maths.c \
+	  player.c
 
 
 ##############

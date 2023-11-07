@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 19:29:30 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/28 16:32:28 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,5 +257,10 @@ void		render(t_data *data);
 void		*malloc_log(size_t size, char *file, int line);
 void		*calloc_log(size_t nmemb, size_t size, char *file, int line);
 bool		in_charset(char c, const char *charset);
+
+/* player
+================================================================================
+*/
+void	player_get_map_position(t_data *data, int *x, int *y);
 
 #endif

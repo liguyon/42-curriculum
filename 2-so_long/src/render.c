@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:50:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 17:52:54 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/31 11:36:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,10 @@ static void	render_player(t_data *data)
 	t_circle	c;
 
 	c = (t_circle){.radius = CONF_TILE_SIZE / 2 - 2,
-		.x = data->player->pos_x * CONF_TILE_SIZE + data->map->x_offset
-		+ CONF_TILE_SIZE / 2, .y = data->player->pos_y * CONF_TILE_SIZE
-		+ data->map->y_offset + CONF_TILE_SIZE / 2};
+		.x = data->player->pos_x, .y = data->player->pos_y};
 	graphics_draw_circle(data->grph, c, COLOR_PLAYER);
 	c = (t_circle){.radius = CONF_TILE_SIZE / 2 - 1,
-		.x = data->player->pos_x * CONF_TILE_SIZE + data->map->x_offset
-		+ CONF_TILE_SIZE / 2, .y = data->player->pos_y * CONF_TILE_SIZE
-		+ data->map->y_offset + CONF_TILE_SIZE / 2};
+		.x = data->player->pos_x, .y = data->player->pos_y};
 	graphics_draw_circle(data->grph, c, COLOR_PLAYER);
 }
 

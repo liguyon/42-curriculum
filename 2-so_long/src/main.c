@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:12:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 20:21:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/10/28 16:33:16 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 #include "mlx.h"
 #include <stdlib.h>
 
-void	update(t_data *data)
+void	update(t_data *data, double dt)
 {
-	if (data->map->map[data->player->pos_y][data->player->pos_x] == MAP_LOOT)
+	int	x;
+	int	y;
+
+	player_get_map_position(data, &x, &y);
+	if (data->map->map[y][x] == MAP_LOOT)
 	{
 		data->player->collected++;
-		data->map->map[data->player->pos_y][data->player->pos_x] = MAP_FLOOR;
+		data->map->map[y][x] = MAP_FLOOR;
 	}
 	if (data->unlocked == false)
 	{
 		if (data->player->collected == data->map->collectibles)
 			data->unlocked = true;
 	}
+	(void)dt;
 }
 
 int	main_loop(t_data *data)
@@ -40,7 +45,7 @@ int	main_loop(t_data *data)
 		timer_delay(time_to_wait);
 	last_time = timer_get_ticks(data->timer);
 	dt = 1e3 / CONF_FPS;
-	update(data);
+	update(data, dt);
 	graphics_clear(data->grph, COLOR_BG);
 	render(data);
 	graphics_present(data->grph);
