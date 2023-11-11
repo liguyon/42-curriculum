@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:02:32 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/21 11:17:14 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/11 14:59:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ static bool	parse_map(t_map *map, char *buffer, const char *filename)
 		return (false);
 	}
 	map->map = ft_split(buffer, '\n');
-	if (map->map == NULL)
+	map->map_cpy = ft_split(buffer, '\n');
+	if (map->map == NULL || map->map_cpy == NULL)
 	{
 		logger(LOGGER_CRIT, "error occured during call to ft_split()");
 		return (false);
@@ -92,8 +93,8 @@ static bool	parse_map(t_map *map, char *buffer, const char *filename)
 		return (false);
 	if (parse_map_walls(map) == false)
 		return (false);
-	// if (parse_map_path(map) == false)
-	// 	return (false);
+	if (parse_map_path(map) == false)
+		return (false);
 	logger(LOGGER_INFO, "loaded map [file:'%s', dimensions:%dx%d]",
 		filename, map->width, map->height);
 	return (true);

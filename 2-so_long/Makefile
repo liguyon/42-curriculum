@@ -4,7 +4,7 @@
 #
 ##############
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror \
+CFLAGS	= -Wall -Wextra \
 	-I$(LIBDIR)/$(LIBFTDIR) \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-O3 \
@@ -34,7 +34,6 @@ SRC	= main.c \
 	  parse.c \
 	  parse1.c \
 	  maths.c \
-	  player.c
 
 
 ##############

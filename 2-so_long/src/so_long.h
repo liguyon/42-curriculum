@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:11:13 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/28 16:32:28 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/11 14:59:49 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 # include <stdint.h>
 # include <stddef.h>
 
+/* config
+================================================================================
+*/
+# define CONF_WINDOW_WIDTH 1600
+# define CONF_GAME_WIDTH 1440
+# define CONF_WINDOW_HEIGHT 912
+# define CONF_WINDOW_TITLE "so_long"
+# define CONF_FPS 60
+# define CONF_TILE_SIZE 48
+# define CONF_ARENA_SIZE 1e8
+
 typedef uint32_t	t_color;
 
 # define COLOR_BG 0x0F0F0F
@@ -35,61 +46,6 @@ typedef uint32_t	t_color;
 # define COLOR_EXIT_ON 0x00FF00
 # define COLOR_ENEMY 0x000000
 
-/* Config
-================================================================================
-*/
-# define CONF_WINDOW_WIDTH 1600
-# define CONF_GAME_WIDTH 1440
-# define CONF_WINDOW_HEIGHT 912
-# define CONF_WINDOW_TITLE "so_long"
-# define CONF_FPS 60
-# define CONF_TILE_SIZE 48
-# define CONF_ARENA_SIZE 1e8
-
-/* map
-================================================================================
-*/
-# define MAP_FLOOR '0'
-# define MAP_WALL '1'
-# define MAP_LOOT 'C'
-# define MAP_EXIT 'E'
-# define MAP_PLAYER 'P'
-# define MAP_ENEMY 'M'
-
-typedef struct s_map {
-	char	**map;
-	int		width;
-	int		height;
-	int		objectives;
-	int		collectibles;
-	int		x_offset;
-	int		y_offset;
-}	t_map;
-
-/* parse
-================================================================================
-*/
-// size (in KB) of the buffer to store file content
-# define PARSE_FILE_SIZE 3000
-
-// number of bytes read by read()
-# define PARSE_READ_SIZE 8192
-
-typedef struct s_stream {
-	int		fd;
-	int		rd;
-	char	*ptr;
-	char	*buf[PARSE_READ_SIZE];
-	bool	read_success;
-}	t_stream;
-
-typedef struct s_map_comp {
-	int	wall;
-	int	collectible;
-	int	player;
-	int	exit;
-}	t_map_comp;
-
 /* maths
 ================================================================================
 */
@@ -97,6 +53,11 @@ typedef struct s_map_comp {
 # ifndef M_PI
 #  define M_PI 3.14159265359
 # endif
+
+typedef struct s_vec2 {
+	float	x;
+	float	y;
+}	t_vec2;
 
 typedef struct s_pixel {
 	int		x;
@@ -122,6 +83,50 @@ typedef struct s_circle {
 	int	y;
 	int	radius;
 }	t_circle;
+
+/* map
+================================================================================
+*/
+# define MAP_FLOOR '0'
+# define MAP_WALL '1'
+# define MAP_LOOT 'C'
+# define MAP_EXIT 'E'
+# define MAP_PLAYER 'P'
+# define MAP_ENEMY 'M'
+
+typedef struct s_map {
+	char	**map;
+	char	**map_cpy;
+	int		width;
+	int		height;
+	int		collectibles;
+	t_vec2	offset;
+	bool	unlocked;
+}	t_map;
+
+/* parse
+================================================================================
+*/
+// size (in KB) of the buffer to store file content
+# define PARSE_FILE_SIZE 3000
+
+// number of bytes read by read()
+# define PARSE_READ_SIZE 8192
+
+typedef struct s_stream {
+	int		fd;
+	int		rd;
+	char	*ptr;
+	char	*buf[PARSE_READ_SIZE];
+	bool	read_success;
+}	t_stream;
+
+typedef struct s_map_comp {
+	int	wall;
+	int	collectible;
+	int	player;
+	int	exit;
+}	t_map_comp;
 
 /* graphics
 ================================================================================
@@ -174,11 +179,11 @@ enum {
 
 typedef struct s_player
 {
-	int	state;
-	int	mvts;
-	int	collected;
-	int	pos_x;
-	int	pos_y;
+	int		state;
+	int		mvts;
+	int		collected;
+	t_vec2	pos;
+	t_vec2	dir;
 }	t_player;
 
 /* data
@@ -190,7 +195,6 @@ typedef struct s_data {
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_player	*player;
-	bool		unlocked;
 }	t_data;
 
 /*
@@ -210,6 +214,7 @@ int			absi(int x);
 bool		parse_map_dimensions(t_map *map);
 bool		parse_map_walls(t_map *map);
 bool		parse_map_components(t_map *map);
+bool		parse_map_path(t_map *map);
 bool		parse(t_map *map, const char *filename);
 
 /* graphics
@@ -257,10 +262,5 @@ void		render(t_data *data);
 void		*malloc_log(size_t size, char *file, int line);
 void		*calloc_log(size_t nmemb, size_t size, char *file, int line);
 bool		in_charset(char c, const char *charset);
-
-/* player
-================================================================================
-*/
-void	player_get_map_position(t_data *data, int *x, int *y);
 
 #endif

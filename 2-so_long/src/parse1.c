@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 10:32:48 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/27 17:05:26 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/11 14:54:28 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	parse_map_dimensions(t_map *map)
 	int	i;
 
 	map->width = ft_strlen(map->map[0]);
-	if (map->width > CONF_GAME_WIDTH
+	if (map->width * CONF_TILE_SIZE > CONF_GAME_WIDTH
 		|| map->height * CONF_TILE_SIZE > CONF_WINDOW_HEIGHT)
 	{
 		ft_printf("Error\nMap is too big\n");
@@ -103,7 +103,22 @@ bool	parse_map_components(t_map *map)
 		ft_printf("Error\nMap is not properly constructed\n");
 		return (false);
 	}
-	map->objectives = c.exit + c.collectible + c.player;
 	map->collectibles = c.collectible;
 	return (true);
+}
+
+bool	parse_map_path(t_map *map)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < map->height)
+	{
+		i = -1;
+		while (++i < map->width)
+		{
+			if ()
+		}
+	}
 }

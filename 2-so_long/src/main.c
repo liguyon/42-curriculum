@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 15:12:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/28 16:33:16 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/11 15:00:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,12 @@
 
 void	update(t_data *data, double dt)
 {
-	int	x;
-	int	y;
+	// todo:
+	// - check collision
+	// - update player position
+	// - update collectibles
+	// - update door
 
-	player_get_map_position(data, &x, &y);
-	if (data->map->map[y][x] == MAP_LOOT)
-	{
-		data->player->collected++;
-		data->map->map[y][x] = MAP_FLOOR;
-	}
-	if (data->unlocked == false)
-	{
-		if (data->player->collected == data->map->collectibles)
-			data->unlocked = true;
-	}
 	(void)dt;
 }
 
@@ -49,7 +41,6 @@ int	main_loop(t_data *data)
 	graphics_clear(data->grph, COLOR_BG);
 	render(data);
 	graphics_present(data->grph);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, CONF_GAME_WIDTH + CONF_TILE_SIZE, 800, 0xFFFFFF, "Controls");
 	return (0);
 }
 
@@ -70,8 +61,12 @@ void	run(t_data *data, const char *map_filename)
 		mlx_loop(data->grph->mlx_ptr);
 		j = -1;
 		while (++j < data->map->height)
+		{
 			free(data->map->map[j]);
+			free(data->map->map_cpy[j]);
+		}
 		free(data->map->map);
+		free(data->map->map_cpy);
 	}
 	graphics_terminate(data->grph);
 }

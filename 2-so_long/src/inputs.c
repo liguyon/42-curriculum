@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:34:18 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/07 05:43:37 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:27:33 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,14 @@
 
 static void	inputs_process_player(int keycode, t_data *data)
 {
-	int	x;
-	int	y;
-
-	player_get_map_position(data, &x, &y);
-	if (keycode == XK_a && data->map->map[y][x - 1] != MAP_WALL)
-	{
-		data->player->pos_x--;
-		data->player->mvts++;
-	}
-	else if (keycode == XK_d && data->map->map[y][x + 1] != MAP_WALL)
-	{
-		data->player->pos_x++;
-		data->player->mvts++;
-	}
-	else if (keycode == XK_w && data->map->map[y - 1][x] != MAP_WALL)
-	{
-		data->player->pos_y--;
-		data->player->mvts++;
-	}
-	else if (keycode == XK_s & data->map->map[y + 1][x] != MAP_WALL)
-	{
-		data->player->pos_y++;
-		data->player->mvts++;
-	}
+	if (keycode == XK_a)
+		data->player->dir.x--;
+	else if (keycode == XK_d)
+		data->player->dir.x++;
+	else if (keycode == XK_w)
+		data->player->dir.y--;
+	else if (keycode == XK_s)
+		data->player->dir.y++;
 }
 
 static int	inputs_process_keypress(int keycode, t_data *data)

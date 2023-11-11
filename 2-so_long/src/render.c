@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 15:50:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/10/31 11:36:29 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/10 17:37:43 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	render_exit(t_data *data, int x, int y)
 	t_triangle	t;
 	t_color		col;
 
-	if (data->unlocked == false)
+	if (data->map->unlocked == false)
 		col = COLOR_EXIT_OFF;
 	else
 		col = COLOR_EXIT_ON;
