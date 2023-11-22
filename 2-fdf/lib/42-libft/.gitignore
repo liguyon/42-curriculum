@@ -1,0 +1,9 @@
+# folders
+test/
+
+# files
+*.out
+*.a
+*.o
+main.c
+test*.c
