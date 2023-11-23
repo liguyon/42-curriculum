@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 16:15:31 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 17:08:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_vec4 {
 typedef struct s_mat4 {
 	float	m[4][4];
 }	t_mat4;
+
+enum {proj_iso, proj_ortho};
 
 /* Geometry */
 typedef struct s_line {
@@ -178,6 +180,9 @@ t_mat4	mat4_create_scale(t_vec3 scale);
 t_mat4	mat4_create_rotation_x(float angle);
 t_mat4	mat4_create_rotation_y(float angle);
 t_mat4	mat4_create_rotation_z(float angle);
+t_mat4	mat4_create_translation(t_vec3 translation);
+t_mat4	mat4_create_projection(int proj);
+
 
 /* Draw */
 void	draw_pixel(t_data *data, int x, int y, t_color c);

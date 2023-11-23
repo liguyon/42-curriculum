@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:00:21 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 18:09:45 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,23 @@ void	update(t_data *data)
 	t_mat4	rotation_x;
 	t_mat4	rotation_y;
 	t_mat4	rotation_z;
-	t_mat4	proj;
+	t_mat4	translation;
 
-	data->mesh->scale = (t_vec3){20, 20, 20};
-	data->mesh->rotation = (t_vec3){35.264f, 45.0f, -60.0f};
+	data->mesh->scale = (t_vec3){1, 1, 1};
+	data->mesh->scale = vec3_scale(data->mesh->scale, 20);
+	data->mesh->rotation = (t_vec3){90, 45, 0};
+	data->mesh->translation = (t_vec3){0, 0, 0};
 	scale = mat4_create_scale(data->mesh->scale);
 	rotation_x = mat4_create_rotation_x(radf(data->mesh->rotation.x));
 	rotation_y = mat4_create_rotation_y(radf(data->mesh->rotation.y));
 	rotation_z = mat4_create_rotation_z(radf(data->mesh->rotation.z));
+	translation = mat4_create_translation(data->mesh->translation);
 	data->transform = scale;
-	data->transform = mat4_mul(rotation_y, data->transform);
 	data->transform = mat4_mul(rotation_x, data->transform);
+	data->transform = mat4_mul(rotation_y, data->transform);
 	data->transform = mat4_mul(rotation_z, data->transform);
-	proj = (t_mat4){.m = {
-		{1, 0, 0, 0},
-		{0, 1, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 1}
-	}};
-	data->transform = mat4_mul(proj, data->transform);	
+	data->transform = mat4_mul(translation, data->transform);
+	// data->transform = mat4_mul(mat4_create_projection(proj_iso), data->transform);
 }
 
 int	main_loop(t_data *data)
@@ -51,9 +49,10 @@ int	main_loop(t_data *data)
 		timer_delay(time_to_wait);
 	last_time = timer_get_ticks(data->timer);
 	update(data);
-	graphics_clear(data, COLOR_BG);
+	mlx_clear_window(data->grph->mlx_ptr, data->grph->win_ptr);
 	render(data);
 	graphics_present(data);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 25, 0xffffff, "hello");
 	return (EXIT_SUCCESS);
 }
 
