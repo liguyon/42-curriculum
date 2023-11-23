@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 20:52:29 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 21:53:01 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	update(t_data *data)
 	t_mat4	rotation_z;
 	t_mat4	translation;
 
-	data->mesh->translation = (t_vec3){0, 0, 0};
 	scale = mat4_create_scale(data->mesh->scale);
 	rotation_x = mat4_create_rotation_x(radf(data->mesh->rotation.x));
 	rotation_y = mat4_create_rotation_y(radf(data->mesh->rotation.y));
@@ -33,7 +32,6 @@ void	update(t_data *data)
 	data->transform = mat4_mul(rotation_y, data->transform);
 	data->transform = mat4_mul(rotation_z, data->transform);
 	data->transform = mat4_mul(translation, data->transform);
-	// data->transform = mat4_mul(mat4_create_projection(proj_iso), data->transform);
 }
 
 int	main_loop(t_data *data)

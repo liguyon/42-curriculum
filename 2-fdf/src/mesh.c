@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 20:51:28 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 22:13:54 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	mesh_init(t_data *data, const char *filename)
 	if (mesh == NULL)
 		return (EXIT_FAILURE);
 	data->mesh = mesh;
-	mesh->scale = (t_vec3){5.0f, 5.0f, 10.0f};
-	mesh->rotation = (t_vec3){55, 45, 21};
+	mesh->scale = (t_vec3){5.0f, 5.0f, 5.0f};
+	mesh->rotation = (t_vec3){90.0f - 35.264f, 45.0f, 21.5f};
 	ret = parse(mesh, filename);
 	if (ret == EXIT_SUCCESS)
 	{

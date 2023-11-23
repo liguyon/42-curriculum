@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:05 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 21:03:01 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 22:16:20 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,25 @@ int	graphics_init(t_data *data)
 
 void	graphics_destroy(t_data *data)
 {
-	if (data->grph->front_buffer != NULL)
-	{
-		mlx_destroy_image(data->grph->mlx_ptr, data->grph->front_buffer->ptr);
-		free(data->grph->front_buffer);
-	}
-	if (data->grph->back_buffer != NULL)
-	{
-		mlx_destroy_image(data->grph->mlx_ptr, data->grph->back_buffer->ptr);
-		free(data->grph->back_buffer);
-	}
-	if (data->grph->win_ptr != NULL)
-		mlx_destroy_window(data->grph->mlx_ptr, data->grph->win_ptr);
-	if (data->grph->mlx_ptr != NULL)
-	{
-		mlx_destroy_display(data->grph->mlx_ptr);
-		free(data->grph->mlx_ptr);
-	}
 	if (data->grph != NULL)
 	{
+		if (data->grph->front_buffer != NULL)
+		{
+			mlx_destroy_image(data->grph->mlx_ptr, data->grph->front_buffer->ptr);
+			free(data->grph->front_buffer);
+		}
+		if (data->grph->back_buffer != NULL)
+		{
+			mlx_destroy_image(data->grph->mlx_ptr, data->grph->back_buffer->ptr);
+			free(data->grph->back_buffer);
+		}
+		if (data->grph->win_ptr != NULL)
+			mlx_destroy_window(data->grph->mlx_ptr, data->grph->win_ptr);
+		if (data->grph->mlx_ptr != NULL)
+		{
+			mlx_destroy_display(data->grph->mlx_ptr);
+			free(data->grph->mlx_ptr);
+		}
 		free(data->grph);
 		data->grph = NULL;
 		logger(LOGGER_INFO, "destroyed graphics");
