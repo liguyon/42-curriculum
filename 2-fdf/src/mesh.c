@@ -3,33 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/22 09:09:51 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 15:43:17 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
-
-static void	mesh_normalize(t_mesh *mesh)
-{
-	int		i;
-	int		j;
-	t_vec3	v;
-
-	j = -1;
-	while (++j < mesh->height)
-	{
-		i = -1;
-		while (++i < mesh->width)
-		{
-			v = mesh->vertices[j][i];
-			mesh->vertices[j][i] = vec3_normalize(v);
-		}
-	}
-}
 
 int	mesh_vertices_alloc(t_mesh *mesh)
 {
@@ -64,11 +46,10 @@ int	mesh_init(t_data *data, const char *filename)
 	if (mesh == NULL)
 		return (EXIT_FAILURE);
 	data->mesh = mesh;
-	mesh->scale = (t_vec3){1, 1, 1};
+	mesh->scale = (t_vec3){1.0f, 1.0f, 1.0f};
 	ret = parse(mesh, filename);
 	if (ret == EXIT_SUCCESS)
 	{
-		mesh_normalize(mesh);
 		logger(LOGGER_INFO,
 			"loaded mesh [file:'%s' ; vertices:%d]",
 			filename, mesh->height * mesh->width);

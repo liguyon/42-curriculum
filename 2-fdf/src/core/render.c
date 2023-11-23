@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/21 14:34:44 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:21:03 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,20 @@
 
 void	render(t_data *data)
 {
-	(void)data;
+	int	i;
+	int	j;
+	t_vec4	tv;
+
+	j = -1;
+	while (++j < data->mesh->height)
+	{
+		i = -1;
+		while (++i < data->mesh->width)
+		{
+			tv = vec4_create_from_vec3(data->mesh->vertices[j][i]);
+			tv = mat4_mul_vec4(data->transform, tv);
+			// if (tv.z > 0)
+				draw_pixel(data, tv.x, tv.y, COLOR_WHITE);
+		}
+	}
 }

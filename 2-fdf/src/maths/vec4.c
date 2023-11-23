@@ -6,20 +6,20 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 19:32:10 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/21 19:33:25 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 13:04:04 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_vec4	vec4_create_from_vec3(t_vec3 *v)
+t_vec4	vec4_create_from_vec3(t_vec3 v)
 {
 	t_vec4	ret;
 
 	ret = (t_vec4){
-		.x = v->x,
-		.y = v->y,
-		.z = v->z,
+		.x = v.x,
+		.y = v.y,
+		.z = v.z,
 		.w = 1
 	};
 	return (ret);

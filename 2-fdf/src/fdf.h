@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/21 19:39:10 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 16:15:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_data {
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_mesh		*mesh;
+	t_mat4		transform;
 }	t_data;
 
 /*
@@ -168,7 +169,15 @@ t_vec3	vec3_add(t_vec3 v, t_vec3 w);
 t_vec3	vec3_sub(t_vec3 v, t_vec3 w);
 t_vec3	vec3_scale(t_vec3 v, float scalar);
 float	vec3_magnitude(t_vec3 v);
-t_vec3	vec3_normalize(t_vec3 v);
+void	vec3_normalize(t_vec3 *v);
+t_vec4	vec4_create_from_vec3(t_vec3 v);
+t_mat4	mat4_create_identity(void);
+t_mat4	mat4_mul(t_mat4 a, t_mat4 b);
+t_vec4	mat4_mul_vec4(t_mat4 m, t_vec4 v);
+t_mat4	mat4_create_scale(t_vec3 scale);
+t_mat4	mat4_create_rotation_x(float angle);
+t_mat4	mat4_create_rotation_y(float angle);
+t_mat4	mat4_create_rotation_z(float angle);
 
 /* Draw */
 void	draw_pixel(t_data *data, int x, int y, t_color c);
