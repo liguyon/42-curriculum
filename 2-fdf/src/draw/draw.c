@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/21 15:03:39 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 15:40:22 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,12 @@ void	draw_line(t_data *data, t_line line)
 	if (line.x0 < line.x1)
 		b.sx = 1.0f;
 	else
-		b.sx = -2.0f;
+		b.sx = -1.0f;
 	b.dy = -absf(line.y1 - line.y0);
 	if (line.y0 < line.y1)
-		b.sy = 1;
+		b.sy = 1.0f;
 	else
-		b.sy = -1;
+		b.sy = -1.0f;
 	b.error = b.dx + b.dy;
 	draw_line_alt(data, line, b);
 }
