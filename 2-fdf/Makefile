@@ -8,7 +8,8 @@ CFLAGS	= -Wall -Wextra \
 	-I$(INCDIR) \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-I$(LIBDIR)/$(LIBFTDIR) \
-	-gdwarf-2 \
+	-O3 \
+	# -gdwarf-2 \
 
 CLFLAGS	= -lXext -lX11 -lm
 

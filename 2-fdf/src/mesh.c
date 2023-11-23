@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 15:43:17 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 20:51:28 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	mesh_init(t_data *data, const char *filename)
 	if (mesh == NULL)
 		return (EXIT_FAILURE);
 	data->mesh = mesh;
-	mesh->scale = (t_vec3){1.0f, 1.0f, 1.0f};
+	mesh->scale = (t_vec3){5.0f, 5.0f, 10.0f};
+	mesh->rotation = (t_vec3){55, 45, 21};
 	ret = parse(mesh, filename);
 	if (ret == EXIT_SUCCESS)
 	{

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 18:09:45 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 20:52:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
+#include "libft.h"
 
 void	update(t_data *data)
 {
@@ -21,9 +22,6 @@ void	update(t_data *data)
 	t_mat4	rotation_z;
 	t_mat4	translation;
 
-	data->mesh->scale = (t_vec3){1, 1, 1};
-	data->mesh->scale = vec3_scale(data->mesh->scale, 20);
-	data->mesh->rotation = (t_vec3){90, 45, 0};
 	data->mesh->translation = (t_vec3){0, 0, 0};
 	scale = mat4_create_scale(data->mesh->scale);
 	rotation_x = mat4_create_rotation_x(radf(data->mesh->rotation.x));
@@ -49,10 +47,20 @@ int	main_loop(t_data *data)
 		timer_delay(time_to_wait);
 	last_time = timer_get_ticks(data->timer);
 	update(data);
+	graphics_clear(data, COLOR_BG);
 	mlx_clear_window(data->grph->mlx_ptr, data->grph->win_ptr);
 	render(data);
 	graphics_present(data);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 25, 0xffffff, "hello");
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 20, 0xffffff, "rotation");
+	char *rot_x = ft_itoa((int)data->mesh->rotation.x);
+	char *rot_y = ft_itoa((int)data->mesh->rotation.y);
+	char *rot_z = ft_itoa((int)data->mesh->rotation.z);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 35, 0xffffff, rot_x);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 50, 0xffffff, rot_y);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 20, 65, 0xffffff, rot_z);
+	free(rot_x);
+	free(rot_y);
+	free(rot_z);
 	return (EXIT_SUCCESS);
 }
 

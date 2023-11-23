@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:08:29 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 21:17:04 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef uint32_t	t_color;
 
-# define COLOR_BG 0x000000
+# define COLOR_BG 0x1A1A1A
 # define COLOR_WHITE 0xffffff
 # define COLOR_BLACK 0x000000
 # define COLOR_RED 0xff0000
