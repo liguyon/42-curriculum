@@ -12,7 +12,7 @@ Common Core | [ft_printf](1-ft_printf) | C | Variadic functions, string formatti
 Common Core | [get_next_line](1-get_next_line) | C | Static variables, buffering, string manipulation, file handling
 Common Core | [push_swap](2-push_swap) | C | Data structures, sorting algorithms, optimization
 Common Core | [minitalk](2-minitalk) | C | Inter-Process-Communication, signal handling, Client-Server architecture, binary encoding
-Common Core | [so_long](2-so_long) | C, MinilibX | Graphics programming, 2D game development
+Common Core | [fdf](2-fdf) | C, MinilibX | Graphics programming
 
 ## About 42 School
 
