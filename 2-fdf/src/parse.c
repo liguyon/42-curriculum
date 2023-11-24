@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:09:04 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:16:14 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:33:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ static int	parse_mesh(t_mesh *mesh, char *buffer)
 		while (++x < mesh->width)
 		{
 			mesh->vertices[y][x].x = (float)x - mesh->width / 2.0f;
-			mesh->vertices[y][x].y = (float)y - mesh->height / 2.0f;
-			mesh->vertices[y][x].y *= -1.0f;
+			mesh->vertices[y][x].y = -1.0f * ((float)y - mesh->height / 2.0f);
 			mesh->vertices[y][x].z = ((float)ft_atoi(token));
 			token = ft_strtok(NULL, " \n");
 		}

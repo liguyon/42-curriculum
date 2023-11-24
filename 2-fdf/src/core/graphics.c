@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:05 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 01:48:21 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:39:12 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static int	graphics_init_framebuffers(t_data *data)
 	t_graphics	*grph;
 
 	grph = data->grph;
-	grph->front_buffer = graphics_create_mlx_image(data);
-	if (grph->front_buffer == NULL)
+	grph->front = graphics_create_mlx_image(data);
+	if (grph->front == NULL)
 		return (EXIT_FAILURE);
-	grph->back_buffer = graphics_create_mlx_image(data);
-	if (grph->back_buffer == NULL)
+	grph->back = graphics_create_mlx_image(data);
+	if (grph->back == NULL)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -93,15 +93,15 @@ void	graphics_destroy(t_data *data)
 {
 	if (data->grph != NULL)
 	{
-		if (data->grph->front_buffer != NULL)
+		if (data->grph->front != NULL)
 		{
-			mlx_destroy_image(data->grph->mlx_ptr, data->grph->front_buffer->ptr);
-			free(data->grph->front_buffer);
+			mlx_destroy_image(data->grph->mlx_ptr, data->grph->front->ptr);
+			free(data->grph->front);
 		}
-		if (data->grph->back_buffer != NULL)
+		if (data->grph->back != NULL)
 		{
-			mlx_destroy_image(data->grph->mlx_ptr, data->grph->back_buffer->ptr);
-			free(data->grph->back_buffer);
+			mlx_destroy_image(data->grph->mlx_ptr, data->grph->back->ptr);
+			free(data->grph->back);
 		}
 		if (data->grph->win_ptr != NULL)
 			mlx_destroy_window(data->grph->mlx_ptr, data->grph->win_ptr);

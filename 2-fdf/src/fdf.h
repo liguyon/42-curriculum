@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 00:29:52 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:46:14 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct s_mlx_image {
 typedef struct s_graphics {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_mlx_image	*front_buffer;
-	t_mlx_image	*back_buffer;
+	t_mlx_image	*front;
+	t_mlx_image	*back;
 }	t_graphics;
 
 /* Timer */
@@ -132,6 +132,12 @@ typedef struct s_stream {
 	int		ret;
 }	t_stream;
 
+/* View */
+typedef struct s_camera {
+	t_vec3	pos;
+	t_vec3	dir;
+}	t_camera;
+
 typedef struct s_data {
 	t_conf		*conf;
 	t_graphics	*grph;
@@ -189,8 +195,6 @@ t_mat4	mat4_create_rotation_x(float angle);
 t_mat4	mat4_create_rotation_y(float angle);
 t_mat4	mat4_create_rotation_z(float angle);
 t_mat4	mat4_create_translation(t_vec3 translation);
-t_mat4	mat4_create_projection(int proj);
-
 
 /* Draw */
 void	draw_pixel(t_data *data, int x, int y, t_color c);

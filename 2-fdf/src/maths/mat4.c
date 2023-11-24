@@ -6,23 +6,21 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:44:00 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 17:50:17 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:41:53 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "libft.h"
 
 t_mat4	mat4_create_identity(void)
 {
 	t_mat4	ret;
 
 	ret = (t_mat4){.m = {
-		{1, 0, 0, 0},
-		{0, 1, 0, 0},
-		{0, 0, 1, 0},
-		{0, 0, 0, 1}
-	}};
+	{1, 0, 0, 0},
+	{0, 1, 0, 0},
+	{0, 0, 1, 0},
+	{0, 0, 0, 1}}};
 	return (ret);
 }
 
@@ -73,55 +71,6 @@ t_mat4	mat4_create_scale(t_vec3 scale)
 	return (ret);
 }
 
-#include <math.h>
-t_mat4	mat4_create_rotation_x(float angle)
-{
-	float	c;
-	float	s;
-	t_mat4	ret;
-
-	c = cosf(angle);
-	s = sinf(angle);
-	ret = mat4_create_identity();
-	ret.m[1][1] = c;
-	ret.m[1][2] = s;
-	ret.m[2][1] = -s;
-	ret.m[2][2] = c;
-	return (ret);
-}
-
-t_mat4	mat4_create_rotation_y(float angle)
-{
-	float	c;
-	float	s;
-	t_mat4	ret;
-
-	c = cosf(angle);
-	s = sinf(angle);
-	ret = mat4_create_identity();
-	ret.m[0][0] = c;
-	ret.m[0][2] = -s;
-	ret.m[2][0] = s;
-	ret.m[2][2] = c;
-	return (ret);
-}
-
-t_mat4	mat4_create_rotation_z(float angle)
-{
-	float	c;
-	float	s;
-	t_mat4	ret;
-
-	c = cosf(angle);
-	s = sinf(angle);
-	ret = mat4_create_identity();
-	ret.m[0][0] = c;
-	ret.m[0][1] = s;
-	ret.m[1][0] = -s;
-	ret.m[1][1] = c;
-	return (ret);
-}
-
 t_mat4	mat4_create_translation(t_vec3 translation)
 {
 	t_mat4	ret;
@@ -130,30 +79,5 @@ t_mat4	mat4_create_translation(t_vec3 translation)
 	ret.m[0][3] = translation.x;
 	ret.m[1][3] = translation.y;
 	ret.m[2][3] = translation.z;
-	return (ret);
-}
-
-t_mat4	mat4_create_projection(int proj)
-{
-	t_mat4	ret;
-
-	if (proj == proj_iso)
-	{
-		ret = (t_mat4){.m = {
-			{sqrtf(3) / sqrtf(6), 0, -sqrtf(3) / sqrtf(6), 0},
-			{1 / sqrtf(6), 2 / sqrtf(6), 1 / sqrtf(6), 0},
-			{sqrtf(2) / sqrtf(6), -sqrtf(2) / sqrtf(6), sqrtf(2) / sqrtf(6), 0},
-			{0, 0, 0, 1},
-		}};
-	}
-	else
-	{
-		ret = (t_mat4){.m = {
-			{1, 0, 0, 0},
-			{0, 1, 0, 0},
-			{0, 0, 0, 0},
-			{0, 0, 0, 1}
-		}};
-	}
 	return (ret);
 }

@@ -39,6 +39,7 @@ SRC	= core/main.c \
 	  maths/vec3.c \
 	  maths/vec4.c \
 	  maths/mat4.c \
+	  maths/mat4_1.c \
 	  mesh.c \
 	  parse.c \
 

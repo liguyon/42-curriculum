@@ -3,21 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 00:01:56 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:43:10 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#include "libft.h"
 #include "mlx.h"
+
 // draw_pixel(data, 0, 0, 0xFFFFFF);		- origin
 // draw_pixel(data, -800, 450, 0xFFFFFF);	- top left
 // draw_pixel(data, 799, 450, 0xFFFFFF);	- top right
 // draw_pixel(data, -800, -449, 0xFFFFFF);	- bottom left
 // draw_pixel(data, 799, -449, 0xFFFFFF);	- bottom right
+
+void	render_text(t_data *data)
+{
+	char *rot_x = ft_itoa((int)data->mesh->r.x % 360);
+	char *rot_y = ft_itoa((int)data->mesh->r.y % 360);
+	char *rot_z = ft_itoa((int)data->mesh->r.z % 360);
+
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr,
+		1420, 20, 0xffffff, "rotation");
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr,
+		1420, 35, 0xffffff, rot_x);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr,
+		1420, 50, 0xffffff, rot_y);
+	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr,
+		1420, 65, 0xffffff, rot_z);
+	free(rot_x);
+	free(rot_y);
+	free(rot_z);
+}
 
 static void	render_prop(t_data *data)
 {
@@ -35,7 +55,6 @@ void	render(t_data *data)
 {
 	int	i;
 	int	j;
-	t_vec4	n;
 
 	j = -1;
 	while (++j < data->mesh->height - 1)

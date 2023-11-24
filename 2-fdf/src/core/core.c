@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 00:29:52 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:34:55 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,7 @@ int	main_loop(t_data *data)
 	mlx_clear_window(data->grph->mlx_ptr, data->grph->win_ptr);
 	render(data);
 	graphics_present(data);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 1420, 20, 0xffffff, "rotation");
-	char *rot_x = ft_itoa((int)data->mesh->r.x % 360);
-	char *rot_y = ft_itoa((int)data->mesh->r.y % 360);
-	char *rot_z = ft_itoa((int)data->mesh->r.z % 360);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 1420, 35, 0xffffff, rot_x);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 1420, 50, 0xffffff, rot_y);
-	mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr, 1420, 65, 0xffffff, rot_z);
-	free(rot_x);
-	free(rot_y);
-	free(rot_z);
+	render_text(data);
 	return (EXIT_SUCCESS);
 }
 

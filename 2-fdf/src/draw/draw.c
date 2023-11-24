@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 23:19:14 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 16:39:12 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_pixel(t_data *data, int x, int y, t_color c)
 	sx = data->conf->window_width / 2 + x;
 	if (sx >= 0 && sx < data->conf->window_width
 		&& sy >= 0 && sy < data->conf->window_height)
-		data->grph->back_buffer->raster[sy * data->conf->window_width + sx] = c;
+		data->grph->back->raster[sy * data->conf->window_width + sx] = c;
 }
 
 void	draw_rect(t_data *data, t_rect rect, t_color c)
