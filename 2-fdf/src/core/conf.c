@@ -6,11 +6,12 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:21:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 21:07:27 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 23:31:26 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 
 int	conf_init(t_data *data)
 {
@@ -24,6 +25,9 @@ int	conf_init(t_data *data)
 	conf->window_height = 900;
 	conf->window_title = "FdF";
 	conf->fps = 60;
+	conf->vp_width = 1400;
+	conf->prop_width = conf->window_width - conf->vp_width;
+	logger(LOGGER_INFO, "loaded default config");
 	return (EXIT_SUCCESS);
 }
 
@@ -33,5 +37,6 @@ void	conf_destroy(t_data *data)
 	{
 		free(data->conf);
 		data->conf = NULL;
+		logger(LOGGER_INFO, "destroyed config");
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 15:40:22 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 23:19:14 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,30 +25,19 @@ void	draw_pixel(t_data *data, int x, int y, t_color c)
 		data->grph->back_buffer->raster[sy * data->conf->window_width + sx] = c;
 }
 
-// void	draw_rect(Data *data, Rect rect, Color c, int mode)
-// {
-// 	if (mode == DRAW_FILLED)
-// 	{
-// 		for (int j = 0 ; j < rect.height ; ++j)
-// 		{
-// 			for (int i = 0 ; i < rect.width ; ++i)
-// 				draw_pixel(data, i + rect.x, j + rect.y, c);
-// 		}
-// 	}
-// 	else if (mode == DRAW_BORDER)
-// 	{
-// 		for (int j = 0 ; j < rect.height ; ++j) 
-// 		{
-// 			draw_pixel(data, rect.x, j + rect.y, c);
-// 			draw_pixel(data, rect.x + rect.width, j + rect.y, c);
-// 		}
-// 		for (int i = 0 ; i < rect.width ; ++i)
-// 		{
-// 			draw_pixel(data, i + rect.x, rect.y, c);
-// 			draw_pixel(data, i + rect.x, rect.y + rect.height, c);
-// 		}
-// 	}
-// }
+void	draw_rect(t_data *data, t_rect rect, t_color c)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (++j < rect.height)
+	{
+		i = -1;
+		while (++i < rect.width)
+			draw_pixel(data, i + rect.x, j + rect.y, c);
+	}
+}
 
 static void	draw_line_alt(t_data *data, t_line line, t_bla b)
 {

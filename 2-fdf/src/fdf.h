@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 21:17:04 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 00:29:52 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef uint32_t	t_color;
 
 # define COLOR_BG 0x1A1A1A
+# define COLOR_PROP_BG 0x1F1F1F
 # define COLOR_WHITE 0xffffff
 # define COLOR_BLACK 0x000000
 # define COLOR_RED 0xff0000
@@ -34,6 +35,8 @@ typedef struct s_conf {
 	int		window_width;
 	int		window_height;
 	char	*window_title;
+	int		vp_width;
+	int		prop_width;
 	int		fps;
 }	t_conf;
 
@@ -77,8 +80,6 @@ typedef struct s_mat4 {
 	float	m[4][4];
 }	t_mat4;
 
-enum {proj_iso, proj_ortho};
-
 /* Geometry */
 typedef struct s_line {
 	int		x0;
@@ -97,14 +98,21 @@ typedef struct s_bla {
 	float	error;
 }	t_bla;
 
+typedef struct s_rect {
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+}	t_rect;
+
 /* Mesh */
 typedef struct s_mesh {
 	int		width;
 	int		height;
 	t_vec3	**vertices;
-	t_vec3	scale;
-	t_vec3	rotation;
-	t_vec3	translation;
+	t_vec3	s;
+	t_vec3	r;
+	t_vec3	t;
 }	t_mesh;
 
 /* Parse */
@@ -155,7 +163,7 @@ void	graphics_destroy(t_data *data);
 void	graphics_clear(t_data *data, t_color color);
 void	graphics_present(t_data *data);
 void	render(t_data *data);
-int		run(t_data *data);
+int		run(t_data *data, const char *filename);
 void	terminate(t_data *data);
 
 /* Inputs */
@@ -187,6 +195,7 @@ t_mat4	mat4_create_projection(int proj);
 /* Draw */
 void	draw_pixel(t_data *data, int x, int y, t_color c);
 void	draw_line(t_data *data, t_line line);
+void	draw_rect(t_data *data, t_rect rect, t_color c);
 
 /* Mesh */
 int		mesh_init(t_data *data, const char *filename);

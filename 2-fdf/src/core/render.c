@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 22:07:02 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 00:01:56 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@
 // draw_pixel(data, 799, 450, 0xFFFFFF);	- top right
 // draw_pixel(data, -800, -449, 0xFFFFFF);	- bottom left
 // draw_pixel(data, 799, -449, 0xFFFFFF);	- bottom right
+
+static void	render_prop(t_data *data)
+{
+	int		padding;
+
+	padding = 5;
+	draw_rect(data, (t_rect){
+		.x = data->conf->window_width / 2 - data->conf->prop_width,
+		.y = -data->conf->window_height / 2 + padding + 1,
+		.width = data->conf->prop_width - padding,
+		.height = data->conf->window_height - padding * 2}, COLOR_PROP_BG);
+}
 
 void	render(t_data *data)
 {
@@ -49,4 +61,5 @@ void	render(t_data *data)
 			draw_line(data, l);
 		}
 	}
+	render_prop(data);
 }

@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:22:05 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 22:16:20 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/24 01:48:21 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ static t_mlx_image	*graphics_create_mlx_image(t_data *data)
 	return (img);
 }
 
-// double buffering
-// drawing is done on the back buffer
-// front buffer is the raster that appears on screen
 static int	graphics_init_framebuffers(t_data *data)
 {
 	t_graphics	*grph;

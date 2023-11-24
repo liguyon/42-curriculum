@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   timer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:38:25 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/21 15:32:27 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/23 23:33:50 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "libft.h"
 #include <time.h>
 
 typedef struct timespec	t_timespec;
@@ -50,6 +51,7 @@ int	timer_init(t_data *data)
 	data->timer = timer;
 	clock_gettime(CLOCK_MONOTONIC, &now);
 	timer->time_start = now.tv_sec * 1e3 + now.tv_nsec / 1e6;
+	logger(LOGGER_INFO, "initialized timer");
 	return (EXIT_SUCCESS);
 }
 
@@ -59,5 +61,6 @@ void	timer_destroy(t_data *data)
 	{
 		free(data->timer);
 		data->timer = NULL;
+		logger(LOGGER_INFO, "destroyed timer");
 	}
 }
