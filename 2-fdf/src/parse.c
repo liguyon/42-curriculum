@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:09:04 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 16:33:31 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/27 17:31:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,15 @@ static void	parse_mesh_dimensions(t_mesh *mesh, char *buffer)
 	}
 }
 
-static int	parse_mesh(t_mesh *mesh, char *buffer)
+static void	parse_vertices(t_mesh *mesh, char *buffer)
 {
 	int		x;
 	int		y;
-	int		i;
 	char	*token;
 
-	parse_mesh_dimensions(mesh, buffer);
-	if (mesh->width < 1 || mesh->height < 1)
-		return (EXIT_FAILURE);
-	if (mesh_vertices_alloc(mesh) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	i = 0;
 	token = ft_strtok(buffer, " \n");
+	mesh->z_min = 0;
+	mesh->z_max = 0;
 	y = -1;
 	while (++y < mesh->height)
 	{
@@ -89,9 +84,23 @@ static int	parse_mesh(t_mesh *mesh, char *buffer)
 			mesh->vertices[y][x].x = (float)x - mesh->width / 2.0f;
 			mesh->vertices[y][x].y = -1.0f * ((float)y - mesh->height / 2.0f);
 			mesh->vertices[y][x].z = ((float)ft_atoi(token));
+			if (mesh->vertices[y][x].z < mesh->z_min)
+				mesh->z_min = mesh->vertices[y][x].z;
+			else if (mesh->vertices[y][x].z > mesh->z_max)
+				mesh->z_max = mesh->vertices[y][x].z;
 			token = ft_strtok(NULL, " \n");
 		}
 	}
+}
+
+static int	parse_mesh(t_mesh *mesh, char *buffer)
+{
+	parse_mesh_dimensions(mesh, buffer);
+	if (mesh->width < 1 || mesh->height < 1)
+		return (EXIT_FAILURE);
+	if (mesh_vertices_alloc(mesh) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	parse_vertices(mesh, buffer);
 	return (EXIT_SUCCESS);
 }
 

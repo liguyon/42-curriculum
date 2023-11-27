@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 16:39:12 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:54:23 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,15 @@ void	draw_rect(t_data *data, t_rect rect, t_color c)
 static void	draw_line_alt(t_data *data, t_line line, t_bla b)
 {
 	float	e2;
+	t_color	col;
 
 	while (1)
 	{
-		draw_pixel(data, line.x0, line.y0, line.c0);
+		if (line.x0 != line.x1)
+			col = line.c0;
+		else
+			col - line.c1;
+		draw_pixel(data, line.x0, line.y0, col);
 		if (line.x0 == line.x1 && line.y0 == line.y1)
 			break ;
 		e2 = 2 * b.error;

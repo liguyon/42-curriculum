@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 16:43:10 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:39:13 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,49 @@ void	render(t_data *data)
 			t_vec4 s = vec4_create_from_vec3(data->mesh->vertices[j + 1][i + 1]);
 			t_vec4 e = vec4_create_from_vec3(data->mesh->vertices[j][i + 1]);
 			t_vec4 o = vec4_create_from_vec3(data->mesh->vertices[j + 1][i]);
+			t_color cn = color_lerp_z(data->mesh->z_min, data->mesh->z_max, n.z);
+			t_color cs = color_lerp_z(data->mesh->z_min, data->mesh->z_max, s.z);
+			t_color ce = color_lerp_z(data->mesh->z_min, data->mesh->z_max, e.z);
+			t_color co = color_lerp_z(data->mesh->z_min, data->mesh->z_max, o.z);
 			n = mat4_mul_vec4(data->transform, n);
 			s = mat4_mul_vec4(data->transform, s);
 			e = mat4_mul_vec4(data->transform, e);
 			o = mat4_mul_vec4(data->transform, o);
-			t_line l = {.c0=COLOR_WHITE, .c1=COLOR_WHITE, .x0=n.x, .y0=n.y, .x1=e.x, .y1=e.y};
+			t_line l = {
+				.c0=cn,
+				.c1=ce,
+				.x0=n.x, .y0=n.y, .x1=e.x, .y1=e.y};
 			draw_line(data, l);
-			l = (t_line){.c0=COLOR_WHITE, .c1=COLOR_WHITE, .x0=n.x, .y0=n.y, .x1=o.x, .y1=o.y};
+			l = (t_line){
+				.c0=cn,
+				.c1=co,
+				.x0=n.x, .y0=n.y, .x1=o.x, .y1=o.y};
 			draw_line(data, l);
-			l = (t_line){.c0=COLOR_WHITE, .c1=COLOR_WHITE, .x0=s.x, .y0=s.y, .x1=e.x, .y1=e.y};
+			l = (t_line){
+				.c0=cs,
+				.c1=ce,
+				.x0=s.x, .y0=s.y, .x1=e.x, .y1=e.y};
 			draw_line(data, l);
-			l = (t_line){.c0=COLOR_WHITE, .c1=COLOR_WHITE, .x0=s.x, .y0=s.y, .x1=o.x, .y1=o.y};
+			l = (t_line){
+				.c0=cs,
+				.c1=co,
+				.x0=s.x, .y0=s.y, .x1=o.x, .y1=o.y};
 			draw_line(data, l);
 		}
 	}
 	render_prop(data);
+
+	draw_rect(data, (t_rect){.x=0, .y=300, .width=20, .height=20}, COLOR_H0);
+	draw_rect(data, (t_rect){.x=20, .y=300, .width=20, .height=20}, COLOR_H1);
+	draw_rect(data, (t_rect){.x=40, .y=300, .width=20, .height=20}, COLOR_H2);
+	draw_rect(data, (t_rect){.x=60, .y=300, .width=20, .height=20}, COLOR_H3);
+	draw_rect(data, (t_rect){.x=80, .y=300, .width=20, .height=20}, COLOR_H4);
+	draw_rect(data, (t_rect){.x=100, .y=300, .width=20, .height=20}, COLOR_H5);
+	draw_rect(data, (t_rect){.x=120, .y=300, .width=20, .height=20}, COLOR_H6);
+	draw_rect(data, (t_rect){.x=140, .y=300, .width=20, .height=20}, COLOR_H7);
+	draw_rect(data, (t_rect){.x=160, .y=300, .width=20, .height=20}, COLOR_H8);
+
+	t_color lerp_test = color_lerp(0xff0000, 0x00ff00, 0.5f);
+	draw_rect(data, (t_rect){.x=160, .y=400, .width=20, .height=20}, lerp_test);
+
 }

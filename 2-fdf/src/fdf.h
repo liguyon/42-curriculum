@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 16:46:14 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/27 18:16:30 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef uint32_t	t_color;
 # define COLOR_YELLOW 0xffff00
 # define COLOR_CYAN 0x00ffff
 # define COLOR_MAGENTA 0xff00ff
+# define COLOR_H0 0x000000
+# define COLOR_H1 0x19053A
+# define COLOR_H2 0x42005A
+# define COLOR_H3 0x741058
+# define COLOR_H4 0xAC2243
+# define COLOR_H5 0xD94225
+# define COLOR_H6 0xF5780C
+# define COLOR_H7 0xF6BF27
+# define COLOR_H8 0xFCFF94
 
 /* Core */
 typedef struct s_conf {
@@ -113,11 +122,13 @@ typedef struct s_mesh {
 	t_vec3	s;
 	t_vec3	r;
 	t_vec3	t;
+	float	z_min;
+	float	z_max;
 }	t_mesh;
 
 /* Parse */
 // size (in KB) of the buffer to store file content
-# define PARSE_FILE_SIZE 5000
+# define PARSE_FILE_SIZE 8000
 
 // number of bytes read by read()
 # define PARSE_READ_SIZE 8192
@@ -131,12 +142,6 @@ typedef struct s_stream {
 	char	*buf[PARSE_READ_SIZE];
 	int		ret;
 }	t_stream;
-
-/* View */
-typedef struct s_camera {
-	t_vec3	pos;
-	t_vec3	dir;
-}	t_camera;
 
 typedef struct s_data {
 	t_conf		*conf;
@@ -177,6 +182,8 @@ void	inputs_bind(t_data *data);
 
 /* Color */
 t_color	color_apply_intensity(t_color col, float k);
+t_color	color_lerp_z(float z_min, float z_max, float z);
+t_color	color_lerp(t_color c0, t_color c1, float param);
 
 /* Maths */
 float	absf(float x);
