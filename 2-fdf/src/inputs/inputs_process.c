@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:04:28 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:09:52 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:32:01 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ int	inputs_process_keypress(int keycode, t_data *data)
 		mlx_loop_end(data->grph->mlx_ptr);
 	else if (keycode == XK_r)
 		mesh_reset_transforms(data);
+	else if (keycode == XK_p)
+	{
+		if (data->inputs->proj == proj_iso)
+			data->inputs->proj = proj_ortho;
+		else
+			data->inputs->proj = proj_iso;
+		mesh_reset_transforms(data);
+	}
 	else if (keycode == XK_Right)
 		data->mesh->r = vec3_add(data->mesh->r, (t_vec3){0, 1, 0});
 	else if (keycode == XK_Left)

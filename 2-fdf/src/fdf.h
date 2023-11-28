@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:24:42 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:29:19 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ typedef struct s_stream {
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 
+enum {proj_iso, proj_ortho};
+
 typedef struct s_inputs {
 	bool	toggle_r;
 	int		last_x_r;
@@ -154,6 +156,7 @@ typedef struct s_inputs {
 	bool	toggle_l;
 	int		last_x_l;
 	int		last_y_l;
+	int		proj;
 }	t_inputs;
 
 typedef struct s_data {

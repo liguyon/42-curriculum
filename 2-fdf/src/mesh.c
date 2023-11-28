@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:21:26 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:32:46 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ void	mesh_reset_transforms(t_data *data)
 
 	mesh = data->mesh;
 	mesh->s = (t_vec3){1.0f, 1.0f, 1.0f};
-	mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};
+	if (data->inputs->proj == proj_iso)
+		mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};
+	else
+		mesh->r = (t_vec3){0.0f, 0.0f, 0.0f};
 	mesh->t = (t_vec3){-data->conf->prop_width / 2, 0.0f, 0.0f};
 }
