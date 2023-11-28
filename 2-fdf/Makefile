@@ -8,7 +8,7 @@ CFLAGS	= -Wall -Wextra \
 	-I$(INCDIR) \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-I$(LIBDIR)/$(LIBFTDIR) \
-	-gdwarf-2 \
+	-O3 \
 
 CLFLAGS	= -lXext -lX11 -lm
 
@@ -30,7 +30,8 @@ SRC	= core/main.c \
 	  core/conf.c \
 	  core/render.c \
 	  utils.c \
-	  inputs.c \
+	  inputs/inputs.c \
+	  inputs/inputs_process.c \
 	  timer.c \
 	  draw/draw.c \
 	  color.c \

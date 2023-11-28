@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/24 01:37:54 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:35:13 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,14 @@ void	mesh_destroy(t_data *data)
 		data->mesh = NULL;
 		logger(LOGGER_INFO, "destroyed mesh");
 	}
+}
+
+void	mesh_reset_transforms(t_data *data)
+{
+	t_mesh	*mesh;
+
+	mesh = data->mesh;
+	mesh->s = (t_vec3){1.0f, 1.0f, 1.0f};
+	mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};
+	mesh->t = (t_vec3){-data->conf->prop_width / 2, 0.0f, 0.0f};
 }

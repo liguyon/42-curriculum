@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 16:00:01 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:11:13 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 /* Color */
 # include <stdint.h>
 # include <stdlib.h>
+#include <stdbool.h>
 
 typedef uint32_t	t_color;
 
@@ -23,12 +24,6 @@ typedef uint32_t	t_color;
 # define COLOR_PROP_BG 0x1F1F1F
 # define COLOR_WHITE 0xffffff
 # define COLOR_BLACK 0x000000
-# define COLOR_RED 0xff0000
-# define COLOR_GREEN 0x00ff00
-# define COLOR_BLUE 0x0000ff
-# define COLOR_YELLOW 0xffff00
-# define COLOR_CYAN 0x00ffff
-# define COLOR_MAGENTA 0xff00ff
 # define COLOR_H0 0x000000
 # define COLOR_H1 0x19053A
 # define COLOR_H2 0x42005A
@@ -47,6 +42,7 @@ typedef struct s_conf {
 	int		vp_width;
 	int		prop_width;
 	int		fps;
+	float	scale_factor;
 }	t_conf;
 
 typedef struct s_mlx_image {
@@ -143,12 +139,28 @@ typedef struct s_stream {
 	int		ret;
 }	t_stream;
 
+/* Input */
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
+# define MOUSE_SCROLL_UP 4
+# define MOUSE_SCROLL_DOWN 5
+
+typedef struct s_inputs {
+	bool	toggle_r;
+	int		last_x_r;
+	int		last_y_r;
+	bool	toggle_l;
+	int		last_x_l;
+	int		last_y_l;
+}	t_inputs;
+
 typedef struct s_data {
 	t_conf		*conf;
 	t_graphics	*grph;
 	t_timer		*timer;
 	t_mesh		*mesh;
 	t_mat4		transform;
+	t_inputs		*inputs;
 }	t_data;
 
 /*
@@ -178,7 +190,12 @@ int		run(t_data *data, const char *filename);
 void	terminate(t_data *data);
 
 /* Inputs */
-void	inputs_bind(t_data *data);
+int		inputs_init(t_data *data);
+void	inputs_destroy(t_data *data);
+int		inputs_process_keypress(int keycode, t_data *data);
+int		inputs_process_structure(t_data *data);
+int		inputs_process_mpress(int keycode, int x, int y, t_data *data);
+int		inputs_process_mrelease(int keycode, int x, int y, t_data *data);
 
 /* Color */
 t_color	color_apply_intensity(t_color col, float k);
@@ -213,6 +230,7 @@ void	draw_rect(t_data *data, t_rect rect, t_color c);
 int		mesh_init(t_data *data, const char *filename);
 int		mesh_vertices_alloc(t_mesh *mesh);
 void	mesh_destroy(t_data *data);
+void	mesh_reset_transforms(t_data *data);
 
 /* Parse */
 int		parse(t_mesh *mesh, const char *filename);

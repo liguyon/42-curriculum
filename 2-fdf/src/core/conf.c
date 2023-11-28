@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:21:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/23 23:31:26 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:41:15 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	conf_init(t_data *data)
 	conf->fps = 60;
 	conf->vp_width = 1400;
 	conf->prop_width = conf->window_width - conf->vp_width;
+	conf->scale_factor = 0.75f;
 	logger(LOGGER_INFO, "loaded default config");
 	return (EXIT_SUCCESS);
 }

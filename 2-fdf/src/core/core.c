@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/27 17:32:06 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:11:56 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,22 @@ void	update(t_data *data)
 	t_mat4	rotation_y;
 	t_mat4	rotation_z;
 	t_mat4	translation;
+	int		x;
+	int		y;
 
+	if (data->inputs->toggle_l == true)
+	{
+		mlx_mouse_get_pos(
+			data->grph->mlx_ptr, data->grph->win_ptr,
+			&x, &y);
+		data->mesh->t = vec3_add(
+			data->mesh->t,
+			(t_vec3){
+				.x= x - data->inputs->last_x_l,
+				.y= -(y - data->inputs->last_y_l), .z=0});
+		data->inputs->last_x_l = x;
+		data->inputs->last_y_l = y;
+	}
 	scale = mat4_create_scale(data->mesh->s);
 	rotation_x = mat4_create_rotation_x(radf(data->mesh->r.x));
 	rotation_y = mat4_create_rotation_y(radf(data->mesh->r.y));
@@ -58,9 +73,9 @@ int	run(t_data *data, const char *filename)
 	if (conf_init(data) == EXIT_FAILURE
 		|| mesh_init(data, filename) == EXIT_FAILURE
 		|| graphics_init(data) == EXIT_FAILURE
-		|| timer_init(data) == EXIT_FAILURE)
+		|| timer_init(data) == EXIT_FAILURE
+		|| inputs_init(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	inputs_bind(data);
 	mlx_loop_hook(data->grph->mlx_ptr, main_loop, data);
 	logger(LOGGER_INFO, "fdf running...");
 	mlx_loop(data->grph->mlx_ptr);
@@ -73,4 +88,5 @@ void	terminate(t_data *data)
 	mesh_destroy(data);
 	graphics_destroy(data);
 	timer_destroy(data);
+	inputs_destroy(data);
 }
