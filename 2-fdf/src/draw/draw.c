@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/27 18:54:23 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 15:11:42 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ void	draw_rect(t_data *data, t_rect rect, t_color c)
 
 static void	draw_line_alt(t_data *data, t_line line, t_bla b)
 {
-	float	e2;
+	int		e2;
+	int		x0_cpy = line.x0;
+	int		y0_cpy = line.y0;
+	int		distance;
 	t_color	col;
 
 	while (1)
 	{
-		if (line.x0 != line.x1)
-			col = line.c0;
-		else
-			col - line.c1;
+		distance = absi(line.x0 - x0_cpy);
+		col = color_lerp(line.c0, line.c1, (float)distance / (float)b.dx);
 		draw_pixel(data, line.x0, line.y0, col);
 		if (line.x0 == line.x1 && line.y0 == line.y1)
 			break ;
@@ -76,16 +77,27 @@ void	draw_line(t_data *data, t_line line)
 {
 	t_bla	b;
 
-	b.dx = absf(line.x1 - line.x0);
+	b.dx = absi(line.x1 - line.x0);
 	if (line.x0 < line.x1)
-		b.sx = 1.0f;
+		b.sx = 1;
 	else
-		b.sx = -1.0f;
-	b.dy = -absf(line.y1 - line.y0);
+		b.sx = -1;
+	b.dy = -absi(line.y1 - line.y0);
 	if (line.y0 < line.y1)
-		b.sy = 1.0f;
+		b.sy = 1;
 	else
-		b.sy = -1.0f;
+		b.sy = -1;
 	b.error = b.dx + b.dy;
 	draw_line_alt(data, line, b);
 }
+
+/*
+line gradient (slope) if two points on the line are given:
+m = y2 - y1 / x2 - x1
+
+line equation
+c is where the y-intercept, the height at which the line crosses the y axis
+y = mx + c
+
+
+*/

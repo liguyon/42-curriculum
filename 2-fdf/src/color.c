@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:45:50 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/27 18:48:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 15:59:20 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_color	color_apply_intensity(t_color col, float k)
 	return (ret);
 }
 
-t_color	color_lerp_z(float z_min, float z_max, float z)
+t_color	color_interpolate_z(float z_min, float z_max, float z)
 {
 	float	frac;
 
@@ -78,9 +78,9 @@ t_color	color_lerp(t_color c0, t_color c1, float param)
 		param = 0.0f;
 	else if (param > 1.0f)
 		param = 1.0f;
-	r = (c0 & 0xff0000) + ((c1 & 0xff0000) - (c0 & 0xff0000)) * param;
-	g = (c0 & 0x00ff00) + ((c1 & 0x00ff00) - (c0 & 0x00ff00)) * param;
-	b = (c0 & 0x0000ff) + ((c1 & 0x0000ff) - (c0 & 0x0000ff)) * param;
+	r = (1.0f - param) * (c0 & 0xff0000) + param * (c1 & 0xff0000);
+	g = (1.0f - param) * (c0 & 0x00ff00) + param * (c1 & 0x00ff00);
+	b = (1.0f - param) * (c0 & 0x0000ff) + param * (c1 & 0x0000ff);
 	ret = (r & 0xff0000) | (g & 0x00ff00) | (b & 0x0000ff);
 	return (ret);
 }

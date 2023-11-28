@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/27 18:16:30 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 16:00:01 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ typedef struct s_line {
 }	t_line;
 
 typedef struct s_bla {
-	float	dx;
-	float	sx;
-	float	dy;
-	float	sy;
-	float	error;
+	int		dx;
+	int		sx;
+	int		dy;
+	int		sy;
+	int		error;
 }	t_bla;
 
 typedef struct s_rect {
@@ -182,11 +182,12 @@ void	inputs_bind(t_data *data);
 
 /* Color */
 t_color	color_apply_intensity(t_color col, float k);
-t_color	color_lerp_z(float z_min, float z_max, float z);
+t_color	color_interpolate_z(float z_min, float z_max, float z);
 t_color	color_lerp(t_color c0, t_color c1, float param);
 
 /* Maths */
 float	absf(float x);
+int		absi(int x);
 float	radf(float angle);
 t_vec3	vec3_add(t_vec3 v, t_vec3 w);
 t_vec3	vec3_sub(t_vec3 v, t_vec3 w);
