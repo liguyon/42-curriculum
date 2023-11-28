@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:04:28 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 20:01:57 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 20:23:32 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	inputs_process_keypress(int keycode, t_data *data)
 		conf_load_palette(data, palette_1);
 	else if (keycode == XK_2)
 		conf_load_palette(data, palette_2);
+	else if (keycode == XK_3)
+		conf_load_palette(data, palette_3);
 	else if (keycode == XK_Right)
 		data->mesh->r = vec3_add(data->mesh->r, (t_vec3){0, 1, 0});
 	else if (keycode == XK_Left)

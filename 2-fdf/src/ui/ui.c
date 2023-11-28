@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:59:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 20:03:22 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 20:13:18 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ void	render_ui_text(t_data *data)
 	draw_text(data, 670, 410, "Controls");
 	draw_text(data, 664, 407, "__________");
 	draw_text(data, 620, 380, "Mouse Left : Translate");
-	draw_text(data, 620, 360, "Mouse Scroll : Zoom +/-");
-	draw_text(data, 620, 340, "1, 2 : Change Color Palette");
-	draw_text(data, 620, 320, "r : Reset Transformations");
-	draw_text(data, 620, 300, "p : Change Projection");
+	draw_text(data, 620, 360, "Mouse Right : Rotate");
+	draw_text(data, 620, 340, "Mouse Scroll : Zoom +/-");
+	draw_text(data, 620, 320, "1, 2, 3 : Color Palette");
+	draw_text(data, 620, 300, "r : Reset Transformations");
+	draw_text(data, 620, 280, "p : Change Projection");
 	draw_text(data, 670, -210, "Elevation");
 	draw_text(data, 664, -213, "___________");
 	i = -1;
