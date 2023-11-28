@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:29:19 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 20:02:04 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ typedef uint32_t	t_color;
 # define COLOR_BG 0x1A1A1A
 # define COLOR_PROP_BG 0x1F1F1F
 # define COLOR_WHITE 0xffffff
-# define COLOR_BLACK 0x000000
-# define COLOR_H0 0x000000
-# define COLOR_H1 0x19053A
-# define COLOR_H2 0x42005A
-# define COLOR_H3 0x741058
-# define COLOR_H4 0xAC2243
-# define COLOR_H5 0xD94225
-# define COLOR_H6 0xF5780C
-# define COLOR_H7 0xF6BF27
-# define COLOR_H8 0xFCFF94
 
 /* Core */
 typedef struct s_conf {
@@ -43,6 +33,15 @@ typedef struct s_conf {
 	int		prop_width;
 	int		fps;
 	float	scale_factor;
+	int		c_h0;
+	int		c_h1;
+	int		c_h2;
+	int		c_h3;
+	int		c_h4;
+	int		c_h5;
+	int		c_h6;
+	int		c_h7;
+	int		c_h8;
 }	t_conf;
 
 typedef struct s_mlx_image {
@@ -148,6 +147,7 @@ typedef struct s_stream {
 # define MOUSE_SCROLL_DOWN 5
 
 enum {proj_iso, proj_ortho};
+enum {palette_1, palette_2};
 
 typedef struct s_inputs {
 	bool	toggle_r;
@@ -166,6 +166,7 @@ typedef struct s_data {
 	t_mesh		*mesh;
 	t_mat4		transform;
 	t_inputs	*inputs;
+	char		**strs;
 }	t_data;
 
 /*
@@ -186,6 +187,7 @@ void	timer_destroy(t_data *data);
 /* Core */
 int		conf_init(t_data *data);
 void	conf_destroy(t_data *data);
+void	conf_load_palette(t_data *data, int palette);
 int		graphics_init(t_data *data);
 void	graphics_destroy(t_data *data);
 void	graphics_clear(t_data *data, t_color color);
@@ -204,8 +206,7 @@ int		inputs_process_mpress(int keycode, int x, int y, t_data *data);
 int		inputs_process_mrelease(int keycode, int x, int y, t_data *data);
 
 /* Color */
-t_color	color_apply_intensity(t_color col, float k);
-t_color	color_interpolate_z(float z_min, float z_max, float z);
+t_color	color_interpolate_z(t_data *data, float z);
 t_color	color_lerp(t_color c0, t_color c1, float param);
 
 /* Maths */
@@ -231,6 +232,8 @@ t_mat4	mat4_create_translation(t_vec3 translation);
 void	draw_pixel(t_data *data, int x, int y, t_color c);
 void	draw_line(t_data *data, t_line line);
 void	draw_rect(t_data *data, t_rect rect, t_color c);
+void	draw_text(t_data *data, int x, int y, char *str);
+
 
 /* Mesh */
 int		mesh_init(t_data *data, const char *filename);
@@ -240,5 +243,9 @@ void	mesh_reset_transforms(t_data *data);
 
 /* Parse */
 int		parse(t_mesh *mesh, const char *filename);
+
+/* UI */
+void	render_ui(t_data *data);
+void	render_ui_text(t_data *data);
 
 #endif

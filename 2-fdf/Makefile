@@ -4,7 +4,7 @@
 #
 ##############
 CC	= cc
-CFLAGS	= -Wall -Wextra \
+CFLAGS	= -Wall -Wextra -Werror \
 	-I$(INCDIR) \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-I$(LIBDIR)/$(LIBFTDIR) \
@@ -34,7 +34,7 @@ SRC	= core/main.c \
 	  inputs/inputs.c \
 	  inputs/inputs_process.c \
 	  timer.c \
-	  draw/draw.c \
+	  draw.c \
 	  color.c \
 	  maths/maths.c \
 	  maths/vec3.c \
@@ -43,6 +43,7 @@ SRC	= core/main.c \
 	  maths/mat4_1.c \
 	  mesh.c \
 	  parse.c \
+	  ui/ui.c \
 
 
 ##############
