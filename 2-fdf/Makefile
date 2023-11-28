@@ -29,6 +29,7 @@ SRC	= core/main.c \
 	  core/core.c \
 	  core/conf.c \
 	  core/render.c \
+	  core/update.c \
 	  utils.c \
 	  inputs/inputs.c \
 	  inputs/inputs_process.c \

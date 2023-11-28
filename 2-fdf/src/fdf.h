@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:11:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:24:42 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* Color */
 # include <stdint.h>
 # include <stdlib.h>
-#include <stdbool.h>
+# include <stdbool.h>
 
 typedef uint32_t	t_color;
 
@@ -101,6 +101,8 @@ typedef struct s_bla {
 	int		dy;
 	int		sy;
 	int		error;
+	int		e2;
+	int		x0_cpy;
 }	t_bla;
 
 typedef struct s_rect {
@@ -160,7 +162,7 @@ typedef struct s_data {
 	t_timer		*timer;
 	t_mesh		*mesh;
 	t_mat4		transform;
-	t_inputs		*inputs;
+	t_inputs	*inputs;
 }	t_data;
 
 /*
@@ -186,6 +188,7 @@ void	graphics_destroy(t_data *data);
 void	graphics_clear(t_data *data, t_color color);
 void	graphics_present(t_data *data);
 void	render(t_data *data);
+void	update(t_data *data);
 int		run(t_data *data, const char *filename);
 void	terminate(t_data *data);
 

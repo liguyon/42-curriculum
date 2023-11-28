@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 15:11:42 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:20:57 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,21 @@ void	draw_rect(t_data *data, t_rect rect, t_color c)
 
 static void	draw_line_alt(t_data *data, t_line line, t_bla b)
 {
-	int		e2;
-	int		x0_cpy = line.x0;
-	int		y0_cpy = line.y0;
-	int		distance;
-	t_color	col;
-
 	while (1)
 	{
-		distance = absi(line.x0 - x0_cpy);
-		col = color_lerp(line.c0, line.c1, (float)distance / (float)b.dx);
-		draw_pixel(data, line.x0, line.y0, col);
+		draw_pixel(data, line.x0, line.y0, color_lerp(line.c0, line.c1,
+				(float)absi(line.x0 - b.x0_cpy) / (float)b.dx));
 		if (line.x0 == line.x1 && line.y0 == line.y1)
 			break ;
-		e2 = 2 * b.error;
-		if (e2 >= b.dy)
+		b.e2 = 2 * b.error;
+		if (b.e2 >= b.dy)
 		{
 			if (line.x0 == line.x1)
 				break ;
 			b.error += b.dy;
 			line.x0 += b.sx;
 		}
-		if (e2 <= b.dx)
+		if (b.e2 <= b.dx)
 		{
 			if (line.y0 == line.y1)
 				break ;
@@ -88,6 +81,7 @@ void	draw_line(t_data *data, t_line line)
 	else
 		b.sy = -1;
 	b.error = b.dx + b.dy;
+	b.x0_cpy = line.x0;
 	draw_line_alt(data, line, b);
 }
 

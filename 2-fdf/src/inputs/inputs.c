@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:44:00 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:05:38 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:15:24 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	inputs_init(t_data *data)
 
 void	inputs_destroy(t_data *data)
 {
-	if (data->inputs != NULL)	
+	if (data->inputs != NULL)
 	{
 		free(data->inputs);
 		data->inputs = NULL;

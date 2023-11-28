@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 16:00:01 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/28 17:26:56 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 #include "libft.h"
 #include "mlx.h"
 #include <math.h>
-
-// draw_pixel(data, 0, 0, 0xFFFFFF);		- origin
-// draw_pixel(data, -800, 450, 0xFFFFFF);	- top left
-// draw_pixel(data, 799, 450, 0xFFFFFF);	- top right
-// draw_pixel(data, -800, -449, 0xFFFFFF);	- bottom left
-// draw_pixel(data, 799, -449, 0xFFFFFF);	- bottom right
 
 void	render_text(t_data *data)
 {
@@ -103,7 +97,6 @@ void	render(t_data *data)
 		}
 	}
 	render_prop(data);
-
 	draw_rect(data, (t_rect){.x=610, .y=-400, .width=20, .height=20}, COLOR_H0);
 	draw_rect(data, (t_rect){.x=630, .y=-400, .width=20, .height=20}, COLOR_H1);
 	draw_rect(data, (t_rect){.x=650, .y=-400, .width=20, .height=20}, COLOR_H2);
@@ -113,33 +106,4 @@ void	render(t_data *data)
 	draw_rect(data, (t_rect){.x=730, .y=-400, .width=20, .height=20}, COLOR_H6);
 	draw_rect(data, (t_rect){.x=750, .y=-400, .width=20, .height=20}, COLOR_H7);
 	draw_rect(data, (t_rect){.x=770, .y=-400, .width=20, .height=20}, COLOR_H8);
-
-	// t_color c0 = 0xff0000;
-	// t_color c1 = 0x0000ff;
-	// t_color lerp_test;
-	// lerp_test = color_lerp(c0, c1, 0.0f);
-	// draw_rect(data, (t_rect){.x=0, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.1f);
-	// draw_rect(data, (t_rect){.x=20, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.2f);
-	// draw_rect(data, (t_rect){.x=40, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.3f);
-	// draw_rect(data, (t_rect){.x=60, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.4f);
-	// draw_rect(data, (t_rect){.x=80, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.5f);
-	// draw_rect(data, (t_rect){.x=100, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.6f);
-	// draw_rect(data, (t_rect){.x=120, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.7f);
-	// draw_rect(data, (t_rect){.x=140, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.8f);
-	// draw_rect(data, (t_rect){.x=160, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 0.9f);
-	// draw_rect(data, (t_rect){.x=180, .y=400, .width=20, .height=20}, lerp_test);
-	// lerp_test = color_lerp(c0, c1, 1.0f);
-	// draw_rect(data, (t_rect){.x=200, .y=400, .width=20, .height=20}, lerp_test);
-
-	// t_line line_test = {.x0=200, .y0=-200, .x1=100, .y1=200, .c0=COLOR_RED, .c1=COLOR_BLUE};
-	// draw_line(data, line_test);
 }
