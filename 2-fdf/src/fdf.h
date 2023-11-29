@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 13:57:59 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 14:34:44 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ typedef struct s_mesh {
 	float	z_max;
 	bool	adjust_sz;
 }	t_mesh;
+
+typedef struct s_adj {
+	int	max_i;
+	int	max_j;
+	int	max_y;
+}	t_adj;
 
 /* Parse */
 // size (in KB) of the buffer to store file content
@@ -243,6 +249,7 @@ int		mesh_init(t_data *data, const char *filename);
 int		mesh_vertices_alloc(t_mesh *mesh);
 void	mesh_destroy(t_data *data);
 void	mesh_reset_transforms(t_data *data);
+void	mesh_adjust_sz(t_data *data);
 
 /* Parse */
 int		parse(t_mesh *mesh, const char *filename);

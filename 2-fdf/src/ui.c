@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:59:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 14:07:43 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 14:34:17 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	render_ui_text(t_data *data)
 	draw_text(data, 620, 260, "l : Lock/Unlock z-scaling");
 	draw_text(data, 620, 240, "PgUp/PgDn : Scale Z +/-");
 	draw_text(data, 670, 100, "Options");
-	draw_text(data, 664, 97, "________");
+	draw_text(data, 667, 97, "________");
 	if (data->inputs->lock_sz == true)
 		draw_text(data, 620, 70, "z-scaling : LOCKED");
 	else
