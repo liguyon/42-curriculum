@@ -9,7 +9,6 @@ CFLAGS	= -Wall -Wextra -Werror \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-I$(LIBDIR)/$(LIBFTDIR) \
 	-O3 \
-	-g3
 
 CLFLAGS	= -lXext -lX11 -lm
 
@@ -42,6 +41,7 @@ SRC	= core/main.c \
 	  maths/vec4.c \
 	  maths/mat4.c \
 	  maths/mat4_1.c \
+	  maths/maths.c \
 	  mesh/mesh.c \
 	  mesh/mesh_adjust.c \
 	  parse.c \
