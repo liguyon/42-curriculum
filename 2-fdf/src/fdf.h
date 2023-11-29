@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 10:56:06 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 13:57:59 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct s_mesh {
 	t_vec3	t;
 	float	z_min;
 	float	z_max;
+	bool	adjust_sz;
 }	t_mesh;
 
 /* Parse */
@@ -151,6 +152,7 @@ typedef struct s_inputs {
 	bool	toggle_l;
 	int		last_x_l;
 	int		last_y_l;
+	bool	lock_sz;
 }	t_inputs;
 
 /* Data */
@@ -196,7 +198,6 @@ void	terminate(t_data *data);
 int		inputs_init(t_data *data);
 void	inputs_destroy(t_data *data);
 int		inputs_process_keypress(int keycode, t_data *data);
-int		inputs_process_structure(t_data *data);
 int		inputs_process_mpress(int keycode, int x, int y, t_data *data);
 int		inputs_process_mrelease(int keycode, int x, int y, t_data *data);
 
@@ -221,8 +222,6 @@ inline float	radf(float angle)
 t_vec3	vec3_add(t_vec3 v, t_vec3 w);
 t_vec3	vec3_sub(t_vec3 v, t_vec3 w);
 t_vec3	vec3_scale(t_vec3 v, float scalar);
-float	vec3_magnitude(t_vec3 v);
-void	vec3_normalize(t_vec3 *v);
 t_vec4	vec4_create_from_vec3(t_vec3 v);
 t_mat4	mat4_create_identity(void);
 t_mat4	mat4_mul(t_mat4 a, t_mat4 b);

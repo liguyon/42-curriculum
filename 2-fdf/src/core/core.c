@@ -6,13 +6,53 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 08:12:48 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 13:43:23 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 #include "libft.h"
+
+void	set_adjust_sz(t_data *data)
+{
+	t_vec4	v;
+	int		i;
+	int		j;
+	int		max_y;
+	int		max_i;
+	int		max_j;
+
+	max_i = 0;
+	max_j = 0;
+	max_y = 0;
+	j = -1;
+	while (++j < data->mesh->height)
+	{
+		i = -1;
+		while (++i < data->mesh->width)
+		{
+			v = vec4_create_from_vec3(data->mesh->vertices[j][i]);
+			v = mat4_mul_vec4(data->transform, v);
+			if ((int)v.y > max_y)
+			{
+				max_i = i;
+				max_j = j;
+				max_y = (int)v.y;
+			}
+		}
+	}
+	v = vec4_create_from_vec3(data->mesh->vertices[max_j][max_i]);
+	v = mat4_mul_vec4(data->transform, v);
+	while (v.y > data->conf->window_height / 2)
+	{
+		data->mesh->s = vec3_sub(data->mesh->s, (t_vec3){0, 0, data->conf->sf});
+		update(data);
+		v = vec4_create_from_vec3(data->mesh->vertices[max_j][max_i]);
+		v = mat4_mul_vec4(data->transform, v);
+	}
+	data->mesh->adjust_sz = false;
+}
 
 int	main_loop(t_data *data)
 {
@@ -25,6 +65,8 @@ int	main_loop(t_data *data)
 		timer_delay(time_to_wait);
 	last_time = timer_get_ticks(data->timer);
 	update(data);
+	if (data->mesh->adjust_sz == true)
+		set_adjust_sz(data);
 	graphics_clear(data, COLOR_BG);
 	mlx_clear_window(data->grph->mlx_ptr, data->grph->win_ptr);
 	render(data);

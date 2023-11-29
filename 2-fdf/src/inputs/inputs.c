@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:44:00 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:15:24 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 13:57:53 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "libft.h"
 #include "mlx.h"
 #include <X11/X.h>
+
+static int	inputs_process_structure(t_data *data)
+{
+	mlx_loop_end(data->grph->mlx_ptr);
+	return (EXIT_SUCCESS);
+}
 
 static void	inputs_bind(t_data *data)
 {

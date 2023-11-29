@@ -37,9 +37,6 @@ Shortcut | Action
 
 ## TODO
 
-### mandatory
-- set default scale.z value based on (z_max - z_min)
-
 ### optional
 - do something less weird when setting default scale factor
 - add option to decouple z-scaling and overall scaling when using mouse scroll

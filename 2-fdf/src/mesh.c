@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 08:22:52 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 13:43:12 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	mesh_reset_transforms(t_data *data)
 	else
 		mesh->r = (t_vec3){0.0f, 0.0f, 0.0f};
 	mesh->t = (t_vec3){-data->conf->prop_width / 2, 0.0f, 0.0f};
+	data->mesh->adjust_sz = true;
 }
