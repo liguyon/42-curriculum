@@ -35,9 +35,9 @@ SRC	= core/main.c \
 	  inputs/inputs.c \
 	  inputs/inputs_process.c \
 	  timer.c \
-	  draw.c \
+	  draw/draw.c \
+	  draw/draw_line.c \
 	  color.c \
-	  maths/maths.c \
 	  maths/vec3.c \
 	  maths/vec4.c \
 	  maths/mat4.c \

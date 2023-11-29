@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 01:16:31 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 11:11:41 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
-#include <math.h>
 
 void	draw_pixel(t_data *data, int x, int y, t_color c)
 {
@@ -54,50 +53,4 @@ void	draw_rect(t_data *data, t_rect rect, t_color c)
 		while (++i < rect.width)
 			draw_pixel(data, i + rect.x, j + rect.y, c);
 	}
-}
-
-static void	draw_line_alt(t_data *data, t_line line, t_bla b)
-{
-	while (1)
-	{
-		draw_pixel(data, line.x0, line.y0, color_lerp(line.c0, line.c1,
-				(float)absi(line.x0 - b.x0_cpy) / (float)b.dx));
-		if (line.x0 == line.x1 && line.y0 == line.y1)
-			break ;
-		b.e2 = 2 * b.error;
-		if (b.e2 >= b.dy)
-		{
-			if (line.x0 == line.x1)
-				break ;
-			b.error += b.dy;
-			line.x0 += b.sx;
-		}
-		if (b.e2 <= b.dx)
-		{
-			if (line.y0 == line.y1)
-				break ;
-			b.error += b.dx;
-			line.y0 += b.sy;
-		}
-	}
-}
-
-// Bresenham's line algorithm
-void	draw_line(t_data *data, t_line line)
-{
-	t_bla	b;
-
-	b.dx = absi(line.x1 - line.x0);
-	if (line.x0 < line.x1)
-		b.sx = 1;
-	else
-		b.sx = -1;
-	b.dy = -absi(line.y1 - line.y0);
-	if (line.y0 < line.y1)
-		b.sy = 1;
-	else
-		b.sy = -1;
-	b.error = b.dx + b.dy;
-	b.x0_cpy = line.x0;
-	draw_line_alt(data, line, b);
 }

@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 08:26:29 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 10:56:06 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_bla {
 	int		error;
 	int		e2;
 	int		x0_cpy;
+	int		y0_cpy;
 }	t_bla;
 
 typedef struct s_rect {
@@ -204,9 +205,19 @@ t_color	color_distribute_z(t_data *data, float z);
 t_color	color_lerp(t_color c0, t_color c1, float param);
 
 /* Maths */
-float	absf(float x);
-int		absi(int x);
-float	radf(float angle);
+inline int	absi(int x)
+{
+	if (x < 0)
+		return (-x);
+	else
+		return (x);
+}
+
+inline float	radf(float angle)
+{
+	return (3.1415927f * angle / 180.0f);
+}
+
 t_vec3	vec3_add(t_vec3 v, t_vec3 w);
 t_vec3	vec3_sub(t_vec3 v, t_vec3 w);
 t_vec3	vec3_scale(t_vec3 v, float scalar);
