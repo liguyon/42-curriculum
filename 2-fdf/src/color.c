@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:45:50 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 10:34:25 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 11:16:00 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_color	color_distribute_z(t_data *data, float z)
 {
 	float	frac;
 
+	if (data->mesh->z_max == data->mesh->z_min)
+		return (data->conf->col[8]);
 	frac = (z - data->mesh->z_min) / (data->mesh->z_max - data->mesh->z_min);
 	if (frac < 1.0f / 9.0f)
 		return (data->conf->col[0]);

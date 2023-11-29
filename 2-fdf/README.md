@@ -39,7 +39,6 @@ Shortcut | Action
 
 ### mandatory
 - set default scale.z value based on (z_max - z_min)
-- fix division by zero in render pipeline
 
 ### optional
 - do something less weird when setting default scale factor
