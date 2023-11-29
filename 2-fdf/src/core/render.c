@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:34:02 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 01:52:47 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 08:26:40 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-
-// render pipeline
 
 void	render_alt(t_data *data, int i, int j, t_vec4 vn)
 {
@@ -43,6 +41,7 @@ void	render_alt(t_data *data, int i, int j, t_vec4 vn)
 	}
 }
 
+// render pipeline
 void	render(t_data *data)
 {
 	int		i;

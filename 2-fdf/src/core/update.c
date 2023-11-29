@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:22:11 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 00:49:46 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 08:24:59 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static void	update_inputs(t_data *data)
 	}
 }
 
+// clamping s.z is necessary
+// because we allow it to get below 0 in the inputs
 void	update(t_data *data)
 {
 	t_mat4	scale;

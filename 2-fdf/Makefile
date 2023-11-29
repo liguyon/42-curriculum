@@ -9,7 +9,7 @@ CFLAGS	= -Wall -Wextra -Werror \
 	-I$(LIBDIR)/$(LIBMLXDIR) \
 	-I$(LIBDIR)/$(LIBFTDIR) \
 	-O3 \
-	-gdwarf-2 \
+	-g3
 
 CLFLAGS	= -lXext -lX11 -lm
 

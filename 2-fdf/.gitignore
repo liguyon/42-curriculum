@@ -9,3 +9,4 @@ lib/minilibx-linux
 *.out
 test*.c
 fdf
+cachegrind*

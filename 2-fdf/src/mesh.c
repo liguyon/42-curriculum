@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 06:40:59 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 08:22:52 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	mesh_destroy(t_data *data)
 	}
 }
 
+// scale vector is adjusted equally on x, y and z
+// so we keep the map's default ratios
 void	mesh_reset_transforms(t_data *data)
 {
 	t_mesh	*mesh;
@@ -85,11 +87,11 @@ void	mesh_reset_transforms(t_data *data)
 
 	mesh = data->mesh;
 	rx = mesh->width / data->conf->vp_width;
-	ry = mesh->height / data->conf->window_width;
+	ry = mesh->height / data->conf->window_height;
 	if (rx > ry)
-		sf = 0.90f * (float)data->conf->vp_width / (float)mesh->width;
+		sf = 0.9f * (float)data->conf->vp_width / (float)mesh->width;
 	else
-		sf = 0.90f * (float)data->conf->window_height / (float)mesh->height;
+		sf = 0.9f * (float)data->conf->window_height / (float)mesh->height;
 	mesh->s = (t_vec3){sf, sf, sf};
 	if (data->conf->proj == proj_iso)
 		mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};

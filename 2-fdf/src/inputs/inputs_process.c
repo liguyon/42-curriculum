@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:04:28 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 06:35:26 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 08:20:23 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	inputs_process_keypress(int keycode, t_data *data)
 	else if (keycode == XK_Page_Up)
 		data->mesh->s = vec3_add(data->mesh->s,
 				(t_vec3){0.0f, 0.0f, data->conf->sf});
-	else if (keycode == XK_Page_Down && data->mesh->s.z >= data->conf->sf)
+	else if (keycode == XK_Page_Down && data->mesh->s.z > 0.0f)
 		data->mesh->s = vec3_sub(data->mesh->s,
 				(t_vec3){0.0f, 0.0f, data->conf->sf});
 	return (EXIT_SUCCESS);

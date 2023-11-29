@@ -39,14 +39,15 @@ Shortcut | Action
 
 ### mandatory
 - set default scale.z value based on (z_max - z_min)
-- set default scale factor based on (z_max - z_min)
+- fix division by zero in render pipeline
 
 ### optional
+- do something less weird when setting default scale factor
 - add option to decouple z-scaling and overall scaling when using mouse scroll
 - fix black grid being rendered when using ortho projection -> draw pixels or rects instead of lines ?
-- add option to plot triangles instead of quads
+- add option to plot triangles
 - use painter's algorithm <- compute polygon avg z value <- store transformed vertices
 
 ### optimization
-- pass by reference instead of value for larger structs 
+- pass by reference instead of value for larger or frequently modified structs
 - replace calloc by arena_alloc

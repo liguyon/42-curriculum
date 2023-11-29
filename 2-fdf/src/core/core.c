@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 03:04:39 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 08:12:48 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ int	main_loop(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+// sf (scale factor) adjustment is super duper weird
+// but works more or less on the maps we have
+// basically, the higher z range is, the lesser sf will be
+// meaning scaling z is more precise on maps with z range
 int	load(t_data *data)
 {
 	int		i;
