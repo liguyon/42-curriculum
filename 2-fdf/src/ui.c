@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:59:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 01:16:53 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 02:46:59 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	render_color_chart(t_data *data)
 void	render_ui_text(t_data *data)
 {
 	int	i;
+	int	pad;
 
 	draw_text(data, 670, 410, "Controls");
 	draw_text(data, 664, 407, "__________");
@@ -59,11 +60,12 @@ void	render_ui_text(t_data *data)
 	draw_text(data, 670, -210, "Elevation");
 	draw_text(data, 664, -213, "___________");
 	i = -1;
+	pad = 10 * ft_strlen(data->strs[9]);
 	while (++i < 9)
 	{
 		draw_text(data, 655, -415 + i * 22, data->strs[i]);
-		draw_text(data, 680, -415 + i * 22, "-");
-		draw_text(data, 700, -415 + i * 22, data->strs[i + 1]);
+		draw_text(data, 660 + pad, -415 + i * 22, "-");
+		draw_text(data, 675 + pad, -415 + i * 22, data->strs[i + 1]);
 	}
 }
 

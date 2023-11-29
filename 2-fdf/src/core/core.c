@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 00:58:18 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 03:04:39 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int	load(t_data *data)
 		if (data->strs[i] == NULL)
 			return (EXIT_FAILURE);
 	}
+	data->conf->sf -= (data->mesh->z_max - data->mesh->z_min) * 0.00014f;
+	if (data->conf->sf < 0.0f)
+		data->conf->sf = 0.005f;
 	return (EXIT_SUCCESS);
 }
 

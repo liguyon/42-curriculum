@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 01:16:47 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 03:14:03 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ typedef struct s_mesh {
 
 /* Parse */
 // size (in KB) of the buffer to store file content
-# define PARSE_FILE_SIZE 8000
+# define PARSE_FILE_SIZE 15000
 
 // number of bytes read by read()
 # define PARSE_READ_SIZE 8192
