@@ -43,7 +43,7 @@ SRC	= core/main.c \
 	  maths/mat4_1.c \
 	  mesh.c \
 	  parse.c \
-	  ui/ui.c \
+	  ui.c \
 
 
 ##############

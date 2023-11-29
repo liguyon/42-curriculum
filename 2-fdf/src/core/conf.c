@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:21:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 20:38:28 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 01:04:55 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void	conf_load_palette_3(t_data *data, int palette)
 {
 	if (palette == palette_3)
 	{
-		data->conf->c_h0 = 0x7d8782;
-		data->conf->c_h1 = 0x87968c;
-		data->conf->c_h2 = 0xa5b4aa;
-		data->conf->c_h3 = 0xd7d7c8;
-		data->conf->c_h4 = 0xa5aa8c;
-		data->conf->c_h5 = 0xe1d2a5;
-		data->conf->c_h6 = 0xcda087;
-		data->conf->c_h7 = 0xa05555;
-		data->conf->c_h8 = 0x914137;
+		data->conf->col[0] = 0x000000;
+		data->conf->col[1] = 0x8800ff;
+		data->conf->col[2] = 0x0000ff;
+		data->conf->col[3] = 0x00ffff;
+		data->conf->col[4] = 0x00ff00;
+		data->conf->col[5] = 0xffff00;
+		data->conf->col[6] = 0xff8800;
+		data->conf->col[7] = 0xff0000;
+		data->conf->col[8] = 0xffffff;
 	}
 }
 
@@ -33,15 +33,15 @@ static void	conf_load_palette_2(t_data *data, int palette)
 {
 	if (palette == palette_2)
 	{
-		data->conf->c_h0 = 0x150406;
-		data->conf->c_h1 = 0x302137;
-		data->conf->c_h2 = 0x403868;
-		data->conf->c_h3 = 0x345893;
-		data->conf->c_h4 = 0x187C9E;
-		data->conf->c_h5 = 0x009EA8;
-		data->conf->c_h6 = 0x00C1AD;
-		data->conf->c_h7 = 0x86DEB7;
-		data->conf->c_h8 = 0xD9F5E6;
+		data->conf->col[0] = 0x150406;
+		data->conf->col[1] = 0x302137;
+		data->conf->col[2] = 0x403868;
+		data->conf->col[3] = 0x345893;
+		data->conf->col[4] = 0x187C9E;
+		data->conf->col[5] = 0x009EA8;
+		data->conf->col[6] = 0x00C1AD;
+		data->conf->col[7] = 0x86DEB7;
+		data->conf->col[8] = 0xD9F5E6;
 	}
 	else
 		conf_load_palette_3(data, palette);
@@ -51,15 +51,15 @@ void	conf_load_palette(t_data *data, int palette)
 {
 	if (palette == palette_1)
 	{
-		data->conf->c_h0 = 0x000000;
-		data->conf->c_h1 = 0x19053A;
-		data->conf->c_h2 = 0x42005A;
-		data->conf->c_h3 = 0x741058;
-		data->conf->c_h4 = 0xAC2243;
-		data->conf->c_h5 = 0xD94225;
-		data->conf->c_h6 = 0xF5780C;
-		data->conf->c_h7 = 0xF6BF27;
-		data->conf->c_h8 = 0xFCFF94;
+		data->conf->col[0] = 0x000000;
+		data->conf->col[1] = 0x19053A;
+		data->conf->col[2] = 0x42005A;
+		data->conf->col[3] = 0x741058;
+		data->conf->col[4] = 0xAC2243;
+		data->conf->col[5] = 0xD94225;
+		data->conf->col[6] = 0xF5780C;
+		data->conf->col[7] = 0xF6BF27;
+		data->conf->col[8] = 0xFCFF94;
 	}
 	else
 		conf_load_palette_2(data, palette);
@@ -79,7 +79,7 @@ int	conf_init(t_data *data)
 	conf->fps = 60;
 	conf->vp_width = 1400;
 	conf->prop_width = conf->window_width - conf->vp_width;
-	conf->scale_factor = 0.75f;
+	conf->sf = 0.5f;
 	conf_load_palette(data, palette_1);
 	logger(LOGGER_INFO, "loaded default config");
 	return (EXIT_SUCCESS);

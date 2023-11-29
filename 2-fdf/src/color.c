@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:45:50 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 19:58:48 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 01:03:27 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 
-t_color	color_interpolate_z(t_data *data, float z)
+t_color	color_distribute_z(t_data *data, float z)
 {
 	float	frac;
 
 	frac = (z - data->mesh->z_min) / (data->mesh->z_max - data->mesh->z_min);
 	if (frac < 1.0f / 9.0f)
-		return (data->conf->c_h0);
+		return (data->conf->col[0]);
 	else if (frac < 2.0f / 9.0f)
-		return (data->conf->c_h1);
+		return (data->conf->col[1]);
 	else if (frac < 3.0f / 9.0f)
-		return (data->conf->c_h2);
+		return (data->conf->col[2]);
 	else if (frac < 4.0f / 9.0f)
-		return (data->conf->c_h3);
+		return (data->conf->col[3]);
 	else if (frac < 5.0f / 9.0f)
-		return (data->conf->c_h4);
+		return (data->conf->col[4]);
 	else if (frac < 6.0f / 9.0f)
-		return (data->conf->c_h5);
+		return (data->conf->col[5]);
 	else if (frac < 7.0f / 9.0f)
-		return (data->conf->c_h6);
+		return (data->conf->col[6]);
 	else if (frac < 8.0f / 9.0f)
-		return (data->conf->c_h7);
+		return (data->conf->col[7]);
 	else
-		return (data->conf->c_h8);
+		return (data->conf->col[8]);
 }
 
 t_color	color_lerp(t_color c0, t_color c1, float param)

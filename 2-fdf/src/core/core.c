@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:42:40 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 19:22:08 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 00:58:18 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,34 @@ int	main_loop(t_data *data)
 	return (EXIT_SUCCESS);
 }
 
+int	load(t_data *data)
+{
+	int		i;
+	float	range;
+
+	data->strs = calloc_log(10, sizeof(*data->strs));
+	if (data->strs == NULL)
+		return (EXIT_FAILURE);
+	range = data->mesh->z_max - data->mesh->z_min;
+	i = -1;
+	while (++i < 10)
+	{
+		data->strs[i] = ft_itoa(data->mesh->z_min + ((float)i / 9.0f) * range);
+		if (data->strs[i] == NULL)
+			return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
 int	run(t_data *data, const char *filename)
 {
 	if (conf_init(data) == EXIT_FAILURE
 		|| mesh_init(data, filename) == EXIT_FAILURE
 		|| graphics_init(data) == EXIT_FAILURE
 		|| timer_init(data) == EXIT_FAILURE
-		|| inputs_init(data) == EXIT_FAILURE)
+		|| inputs_init(data) == EXIT_FAILURE
+		|| load(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-
-	data->strs = calloc_log(10, sizeof(*data->strs));
-	float	range;
-	range = data->mesh->z_max - data->mesh->z_min;
-	for (int i = 0; i < 10; ++i)
-	{
-		data->strs[i] = ft_itoa(data->mesh->z_min + ((float)i / 9.0f) * range);
-	}
 	mlx_loop_hook(data->grph->mlx_ptr, main_loop, data);
 	logger(LOGGER_INFO, "fdf running...");
 	mlx_loop(data->grph->mlx_ptr);

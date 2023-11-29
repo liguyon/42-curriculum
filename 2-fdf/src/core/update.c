@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:22:11 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:25:55 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 00:49:46 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ static void	update_inputs(t_data *data)
 	int	x;
 	int	y;
 
+	mlx_mouse_get_pos(
+		data->grph->mlx_ptr, data->grph->win_ptr, &x, &y);
 	if (data->inputs->toggle_l == true)
 	{
-		mlx_mouse_get_pos(
-			data->grph->mlx_ptr, data->grph->win_ptr,
-			&x, &y);
-		data->mesh->t = vec3_add(
-				data->mesh->t,
-				(t_vec3){
-				.x = x - data->inputs->last_x_l,
+		data->mesh->t = vec3_add(data->mesh->t,
+				(t_vec3){.x = x - data->inputs->last_x_l,
 				.y = -(y - data->inputs->last_y_l), .z = 0});
 		data->inputs->last_x_l = x;
 		data->inputs->last_y_l = y;
+	}
+	else if (data->inputs->toggle_r == true)
+	{
+		data->mesh->r = vec3_add(data->mesh->r,
+				(t_vec3){.x = -(y - data->inputs->last_y_r),
+				.y = -(x - data->inputs->last_x_r), .z = 0.0f});
+		data->inputs->last_x_r = x;
+		data->inputs->last_y_r = y;
 	}
 }
 
@@ -42,6 +47,8 @@ void	update(t_data *data)
 	t_mat4	translation;
 
 	update_inputs(data);
+	if (data->mesh->s.z < 0.0f)
+		data->mesh->s.z = 0.0f;
 	scale = mat4_create_scale(data->mesh->s);
 	rotation_x = mat4_create_rotation_x(radf(data->mesh->r.x));
 	rotation_y = mat4_create_rotation_y(radf(data->mesh->r.y));

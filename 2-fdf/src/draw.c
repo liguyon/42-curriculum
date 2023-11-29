@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:52:06 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 18:54:39 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 01:16:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	draw_text(t_data *data, int x, int y, char *str)
 		sy = data->conf->window_height / 2 - y;
 		sx = data->conf->window_width / 2 + x;
 		if (sx >= 0 && sx < data->conf->window_width
-		&& sy >= 0 && sy < data->conf->window_height)
+			&& sy >= 0 && sy < data->conf->window_height)
 			mlx_string_put(data->grph->mlx_ptr, data->grph->win_ptr,
 				sx, sy, COLOR_WHITE, str);
 	}

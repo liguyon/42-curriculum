@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 20:16:41 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 01:16:47 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,8 @@ typedef struct s_conf {
 	int		vp_width;
 	int		prop_width;
 	int		fps;
-	float	scale_factor;
-	int		c_h0;
-	int		c_h1;
-	int		c_h2;
-	int		c_h3;
-	int		c_h4;
-	int		c_h5;
-	int		c_h6;
-	int		c_h7;
-	int		c_h8;
+	float	sf;
+	int		col[9];
 }	t_conf;
 
 typedef struct s_mlx_image {
@@ -142,7 +134,7 @@ typedef struct s_stream {
 
 /* Input */
 # define MOUSE_LEFT 1
-# define MOUSE_RIGHT 2
+# define MOUSE_RIGHT 3
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 
@@ -207,7 +199,7 @@ int		inputs_process_mpress(int keycode, int x, int y, t_data *data);
 int		inputs_process_mrelease(int keycode, int x, int y, t_data *data);
 
 /* Color */
-t_color	color_interpolate_z(t_data *data, float z);
+t_color	color_distribute_z(t_data *data, float z);
 t_color	color_lerp(t_color c0, t_color c1, float param);
 
 /* Maths */
@@ -234,7 +226,6 @@ void	draw_pixel(t_data *data, int x, int y, t_color c);
 void	draw_line(t_data *data, t_line line);
 void	draw_rect(t_data *data, t_rect rect, t_color c);
 void	draw_text(t_data *data, int x, int y, char *str);
-
 
 /* Mesh */
 int		mesh_init(t_data *data, const char *filename);
