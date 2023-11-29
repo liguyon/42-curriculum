@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:21:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 02:51:22 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 11:30:39 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	conf_init(t_data *data)
 	conf->window_width = 1600;
 	conf->window_height = 900;
 	conf->window_title = "FdF";
-	conf->fps = 60;
+	conf->fps = 30;
 	conf->vp_width = 1400;
 	conf->prop_width = conf->window_width - conf->vp_width;
 	conf->sf = 0.5f;

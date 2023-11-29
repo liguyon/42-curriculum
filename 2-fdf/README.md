@@ -43,10 +43,9 @@ Shortcut | Action
 ### optional
 - do something less weird when setting default scale factor
 - add option to decouple z-scaling and overall scaling when using mouse scroll
-- fix black grid being rendered when using ortho projection -> draw pixels or rects instead of lines ?
 - add option to plot triangles
 - use painter's algorithm <- compute polygon avg z value <- store transformed vertices
 
 ### optimization
 - pass by reference instead of value for larger or frequently modified structs
-- replace calloc by arena_alloc
+- fix massive cache misses when accessing mlx image's raster
