@@ -41,3 +41,4 @@ Shortcut | Action
 - set default scale.z value based on (z_max - z_min)
 - set default scale factor based on (z_max - z_min)
 - add option to decouple z-scaling and overall scaling when using mouse scroll
+- fix black grid being rendered when using ortho projection
