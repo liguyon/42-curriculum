@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 15:23:55 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/28 17:32:46 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 06:40:59 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,13 @@ int	mesh_init(t_data *data, const char *filename)
 	if (mesh == NULL)
 		return (EXIT_FAILURE);
 	data->mesh = mesh;
-	mesh->s = (t_vec3){1.0f, 1.0f, 1.0f};
-	mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};
-	mesh->t = (t_vec3){-data->conf->prop_width / 2, 0.0f, 0.0f};
 	ret = parse(mesh, filename);
 	if (ret == EXIT_SUCCESS)
 	{
 		logger(LOGGER_INFO,
 			"loaded mesh [file:'%s' ; vertices:%d ; width:%d ; height:%d]",
 			filename, mesh->height * mesh->width, mesh->width, mesh->height);
+		mesh_reset_transforms(data);
 	}
 	return (ret);
 }
@@ -81,10 +79,19 @@ void	mesh_destroy(t_data *data)
 void	mesh_reset_transforms(t_data *data)
 {
 	t_mesh	*mesh;
+	float	rx;
+	float	ry;
+	float	sf;
 
 	mesh = data->mesh;
-	mesh->s = (t_vec3){1.0f, 1.0f, 1.0f};
-	if (data->inputs->proj == proj_iso)
+	rx = mesh->width / data->conf->vp_width;
+	ry = mesh->height / data->conf->window_width;
+	if (rx > ry)
+		sf = 0.90f * (float)data->conf->vp_width / (float)mesh->width;
+	else
+		sf = 0.90f * (float)data->conf->window_height / (float)mesh->height;
+	mesh->s = (t_vec3){sf, sf, sf};
+	if (data->conf->proj == proj_iso)
 		mesh->r = (t_vec3){90.0f - 35.0f, 45.0f, 21.0f};
 	else
 		mesh->r = (t_vec3){0.0f, 0.0f, 0.0f};

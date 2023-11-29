@@ -38,7 +38,6 @@ Shortcut | Action
 ## TODO
 
 ### mandatory
-- set default scale vector based on map size to fit window
 - set default scale.z value based on (z_max - z_min)
 - set default scale factor based on (z_max - z_min)
 

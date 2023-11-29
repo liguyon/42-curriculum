@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:04:28 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 00:47:24 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 06:35:26 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	inputs_process_keypress(int keycode, t_data *data)
 		mesh_reset_transforms(data);
 	else if (keycode == XK_p)
 	{
-		if (data->inputs->proj == proj_iso)
-			data->inputs->proj = proj_ortho;
+		if (data->conf->proj == proj_iso)
+			data->conf->proj = proj_ortho;
 		else
-			data->inputs->proj = proj_iso;
+			data->conf->proj = proj_iso;
 		mesh_reset_transforms(data);
 	}
 	else if (keycode == XK_1)

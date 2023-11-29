@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 14:11:49 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 03:14:03 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 06:34:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef uint32_t	t_color;
 # define COLOR_WHITE 0xffffff
 
 /* Core */
+enum {proj_iso, proj_ortho};
+
 typedef struct s_conf {
 	int		window_width;
 	int		window_height;
@@ -34,6 +36,7 @@ typedef struct s_conf {
 	int		fps;
 	float	sf;
 	int		col[9];
+	int		proj;
 }	t_conf;
 
 typedef struct s_mlx_image {
@@ -138,7 +141,6 @@ typedef struct s_stream {
 # define MOUSE_SCROLL_UP 4
 # define MOUSE_SCROLL_DOWN 5
 
-enum {proj_iso, proj_ortho};
 enum {palette_1, palette_2, palette_3};
 
 typedef struct s_inputs {
@@ -148,7 +150,6 @@ typedef struct s_inputs {
 	bool	toggle_l;
 	int		last_x_l;
 	int		last_y_l;
-	int		proj;
 }	t_inputs;
 
 /* Data */

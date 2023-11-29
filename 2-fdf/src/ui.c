@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ui.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 17:59:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/29 02:46:59 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/11/29 06:20:18 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
 #include "libft.h"
-#include <math.h>
 
 static void	render_sidebar(t_data *data)
 {
@@ -43,11 +41,32 @@ static void	render_color_chart(t_data *data)
 	draw_rect(data, (t_rect){620, -244, 20, 20}, c->col[8]);
 }
 
-void	render_ui_text(t_data *data)
+static void	render_ui_text_chart(t_data *data)
 {
 	int	i;
+	int	len;
 	int	pad;
 
+	pad = ft_strlen(data->strs[0]);
+	i = 0;
+	while (++i < 10)
+	{
+		len = ft_strlen(data->strs[i]);
+		if (len > pad)
+			pad = len;
+	}
+	i = -1;
+	pad *= 10;
+	while (++i < 9)
+	{
+		draw_text(data, 655, -415 + i * 22, data->strs[i]);
+		draw_text(data, 660 + pad, -415 + i * 22, "-");
+		draw_text(data, 680 + pad, -415 + i * 22, data->strs[i + 1]);
+	}
+}
+
+void	render_ui_text(t_data *data)
+{
 	draw_text(data, 670, 410, "Controls");
 	draw_text(data, 664, 407, "__________");
 	draw_text(data, 620, 380, "Mouse Left : Translate");
@@ -59,14 +78,7 @@ void	render_ui_text(t_data *data)
 	draw_text(data, 620, 260, "PgUp/PgDn : Scale Z +/-");
 	draw_text(data, 670, -210, "Elevation");
 	draw_text(data, 664, -213, "___________");
-	i = -1;
-	pad = 10 * ft_strlen(data->strs[9]);
-	while (++i < 9)
-	{
-		draw_text(data, 655, -415 + i * 22, data->strs[i]);
-		draw_text(data, 660 + pad, -415 + i * 22, "-");
-		draw_text(data, 675 + pad, -415 + i * 22, data->strs[i + 1]);
-	}
+	render_ui_text_chart(data);
 }
 
 void	render_ui(t_data *data)
