@@ -12,8 +12,8 @@ Common Core | [ft_printf](1-ft_printf) | C | Variadic functions, string formatti
 Common Core | [get_next_line](1-get_next_line) | C | Static variables, buffering, string manipulation, file handling
 Common Core | [push_swap](2-push_swap) | C | Data structures, sorting algorithms, optimization
 Common Core | [minitalk](2-minitalk) | C | Inter-Process-Communication, signal handling, Client-Server architecture, binary encoding
-Common Core | [fdf](2-fdf) | C, MinilibX | Graphics programming
-Common Core | [philosophers](3-philosophers) | C | Dining philosophers problem, threads, mutexes 
+Common Core | [fdf](2-fdf) | C, MinilibX | 3D graphics programming, linear algebra
+Common Core | [philosophers](3-philosophers) | C | Dining philosophers problem, concurrent programming
 
 ## About 42 School
 
