@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("\nusage: ./fdf path/to/file.ber\n\n");
+		ft_printf("\nusage: ./fdf path/to/map.fdf\n\n");
 		return (EXIT_SUCCESS);
 	}
 	ret = EXIT_FAILURE;

@@ -38,7 +38,7 @@ int	main_loop(t_data *data)
 // sf (scale factor) adjustment is super duper weird
 // but works more or less on the maps we have
 // basically, the higher z range is, the lesser sf will be
-// meaning scaling z is more precise on maps with z range
+// meaning scaling z is more precise on maps with higher z range
 int	load(t_data *data)
 {
 	int		i;
