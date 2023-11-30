@@ -32,6 +32,7 @@ Shortcut | Action
 `PgUp`, `PgDn` | Z scaling +/-
 `p` | Switch isometric/orthogonal projection
 `r` | Reset transformations
+`l` | Toggle z scaling lock/unlock
 `1`, `2`, `3` | Change color palette
 `Esc` | Quit
 
@@ -39,7 +40,6 @@ Shortcut | Action
 
 ### optional
 - do something less weird when setting default scale factor
-- add option to decouple z-scaling and overall scaling when using mouse scroll
 - add option to plot triangles
 - use painter's algorithm <- compute polygon avg z value <- store transformed vertices
 
