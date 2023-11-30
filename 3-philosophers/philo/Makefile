@@ -7,8 +7,9 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror \
 	-I$(INCDIR) \
 	-g \
+	# -fsanitize=thread \
 
-CLFLAGS	= -lXext -lX11 -lm
+CLFLAGS	= -pthread
 
 ##############
 #
@@ -22,6 +23,9 @@ INCDIR	= src
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 NAME = philo
 SRC	= main.c \
+	  utils.c \
+	  parse.c \
+	  philo.c \
 
 
 ##############
