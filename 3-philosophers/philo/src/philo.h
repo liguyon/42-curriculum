@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:21 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/30 17:34:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/08 23:41:21 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,38 @@
 # define ANSI_BMAG "\e[1;35m"
 # define ANSI_RESET "\e[0m"
 
-enum {state_eat, state_sleep, state_think, state_dead};
+enum
+{
+	state_eat,
+	state_sleep,
+	state_think,
+	state_dead
+};
 
-typedef struct s_philo {
+typedef struct s_philo
+{
 	int			id;
 	pthread_t	tid;
 	int			state;
 }	t_philo;
 
-typedef struct s_data {
-	int		n_philo;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		n_must_eat;
-	t_philo	**philos;
-	bool	is_running;
+typedef struct s_fork
+{
+	pthread_mutex_t	mutex;
+	bool			taken;
+}	t_fork;
+
+typedef struct s_data
+{
+	pthread_mutex_t	mutex_run;
+	t_philo			**philos;
+	t_fork			**forks;
+	int				n_philo;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				n_must_eat;
+	bool			is_running;
 }	t_data;
 
 /*
@@ -51,28 +67,28 @@ typedef struct s_data {
 ================================================================================
 */
 
-/* Utils */
+/* utils */
 int		ft_isdigit(int c);
 int		ft_atoi(const char *nptr);
 long	ft_atol(const char *nptr);
 void	*calloc_log(size_t nmemb, size_t size);
 
-/* Parse */
+/* parse */
 int		parse_args(t_data *data, int ac, char *av[]);
 
-/* Philo */
+/* philo */
 t_philo	*philo_create(t_data *data, int id);
 void	philo_destroy(t_philo *philo);
+
+/* fork */
+t_fork	*fork_create(void);
+void	fork_destroy(t_fork *fork);
 
 /*
 ================================================================================
 	log messages
 ================================================================================
 */
-
-# define LOG_USAGE "\nusage:\n\t./philo  number_of_philosophers  time_to_die " \
-		" time_to_eat  time_to_sleep  " \
-		"[number_of_times_each_philosopher_must_eat]\n\n"
 
 # define LOG_N_PHILO "there must be at least 1 philosopher\n"
 

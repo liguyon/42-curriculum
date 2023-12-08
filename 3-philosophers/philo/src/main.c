@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/30 17:41:13 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/08 23:39:07 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,28 @@ int	run(t_data *data)
 	data->philos = calloc_log(data->n_philo, sizeof(*data->philos));
 	if (data->philos == NULL)
 		return (EXIT_FAILURE);
+	data->forks = calloc_log(data->n_philo, sizeof(*data->forks));
+	if (data->forks == NULL)
+		return (EXIT_FAILURE);
 	i = -1;
+	if (pthread_mutex_init(&data->mutex_run, NULL) != EXIT_SUCCESS)
+		return (EXIT_FAILURE);
 	while (++i < data->n_philo)
 	{
 		data->philos[i] = philo_create(data, i + 1);
 		if (data->philos[i] == NULL)
 			return (EXIT_FAILURE);
-		pthread_join(data->philos[i]->tid, NULL);
+		data->forks[i] = fork_create();
+		if (data->forks[i] == NULL)
+			return (EXIT_FAILURE);
 	}
+	pthread_mutex_lock(&data->mutex_run);
+	data->is_running = true;
+	pthread_mutex_unlock(&data->mutex_run);
+	i = -1;
+	while (++i < data->n_philo)
+		pthread_join(data->philos[i]->tid, NULL);
+	pthread_mutex_destroy(&data->mutex_run);
 	return (EXIT_SUCCESS);
 }
 
@@ -41,6 +55,13 @@ void	terminate(t_data *data)
 			philo_destroy(data->philos[i]);
 		free(data->philos);
 	}
+	if (data->forks != NULL)
+	{
+		i = -1;
+		while (++i < data->n_philo)
+			fork_destroy(data->forks[i]);
+		free(data->forks);
+	}
 	free(data);
 }
 
@@ -51,7 +72,9 @@ int	main(int argc, char *argv[])
 
 	if (argc != 5 && argc != 6)
 	{
-		printf(LOG_USAGE);
+		printf("\nusage:\n\t./philo  number_of_philosophers  time_to_die " \
+		" time_to_eat  time_to_sleep  " \
+		"[number_of_times_each_philosopher_must_eat]\n\n");
 		return (EXIT_FAILURE);
 	}
 	data = calloc_log(1, sizeof(*data));

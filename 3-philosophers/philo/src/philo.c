@@ -6,16 +6,41 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:10:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/30 17:36:30 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/08 23:37:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*thread_routine(void *vargp)
+void	*philo_get_from_tid(t_data *data, pthread_t tid)
 {
-	printf("hello\n");
-	(void)vargp;
+	int	i;
+
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		if (data->philos[i]->tid == tid)
+			return (data->philos[i]);
+	}
+	return (NULL);
+}
+
+void	*philo_routine(void *vargp)
+{
+	t_data	*data;
+	t_philo	*philo;
+
+	data = (t_data *)vargp;
+	pthread_mutex_lock(&data->mutex_run);
+	while (!data->is_running)
+	{
+		pthread_mutex_unlock(&data->mutex_run);
+		usleep(1e3);
+		pthread_mutex_lock(&data->mutex_run);
+	}
+	pthread_mutex_unlock(&data->mutex_run);
+	philo = philo_get_from_tid(data, pthread_self());
+	printf("hello from %d\n", philo->id);
 	return (NULL);
 }
 
@@ -28,7 +53,11 @@ t_philo	*philo_create(t_data *data, int id)
 		return (NULL);
 	ret->id = id;
 	ret->state = state_think;
-	pthread_create(&ret->tid, NULL, thread_routine, data);
+	if (pthread_create(&ret->tid, NULL, philo_routine, data) != EXIT_SUCCESS)
+	{
+		free(ret);
+		return (NULL);
+	}
 	return (ret);
 }
 
