@@ -28,7 +28,8 @@ SRC	= main.c \
 	  utils.c \
 	  parse.c \
 	  philo.c \
-	  philo1.c \
+	  philo_actions.c \
+	  philo_loop.c \
 	  fork.c \
 
 ##############

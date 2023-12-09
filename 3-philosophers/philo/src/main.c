@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 06:54:34 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 08:45:14 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,16 @@ int	load(t_data *data)
 	int	i;
 
 	data->philos = calloc_log(data->n_philo, sizeof(*data->philos));
-	if (data->philos == NULL)
-		return (EXIT_FAILURE);
 	data->forks = calloc_log(data->n_philo, sizeof(*data->forks));
-	if (data->forks == NULL)
+	if (data->philos == NULL || data->forks == NULL)
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init(&data->mutex_run, NULL) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
+	if (pthread_mutex_init(&data->mutex_ate, NULL) != EXIT_SUCCESS)
+	{
+		pthread_mutex_destroy(&data->mutex_run);
+		return (EXIT_FAILURE);
+	}
 	i = -1;
 	while (++i < data->n_philo)
 	{
@@ -63,6 +66,7 @@ int	run(t_data *data)
 		else
 			data->philos[i]->right = data->forks[0];
 	}
+	data->finished_eating = 0;
 	data->time_start = get_time();
 	pthread_mutex_lock(&data->mutex_run);
 	data->is_running = true;
@@ -71,6 +75,7 @@ int	run(t_data *data)
 	while (++i < data->n_philo)
 		pthread_join(data->philos[i]->tid, NULL);
 	pthread_mutex_destroy(&data->mutex_run);
+	pthread_mutex_destroy(&data->mutex_ate);
 	return (EXIT_SUCCESS);
 }
 
