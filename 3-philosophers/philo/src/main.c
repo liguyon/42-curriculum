@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/08 23:39:07 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 02:11:29 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ int	run(t_data *data)
 		if (data->forks[i] == NULL)
 			return (EXIT_FAILURE);
 	}
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		data->philos[i]->left = data->forks[i];
+		if (i < data->n_philo - 1)
+			data->philos[i]->right = data->forks[i + 1];
+		else
+			data->philos[i]->right = data->forks[0];
+	}
+	data->time_start = timer_get_time();
 	pthread_mutex_lock(&data->mutex_run);
 	data->is_running = true;
 	pthread_mutex_unlock(&data->mutex_run);

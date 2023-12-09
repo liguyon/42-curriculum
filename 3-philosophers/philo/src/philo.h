@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:21 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/08 23:41:21 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 06:21:32 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,16 @@
 # include <unistd.h>
 
 # define ANSI_BRED "\e[1;31m"
-# define ANSI_BGRN "\e[1;32m"
-# define ANSI_BYEL "\e[1;33m"
-# define ANSI_BBLU "\e[1;34m"
-# define ANSI_BWHT "\e[1;37m"
-# define ANSI_BMAG "\e[1;35m"
 # define ANSI_RESET "\e[0m"
+
+# define TIMESTEP 1e2
 
 enum
 {
-	state_eat,
-	state_sleep,
-	state_think,
-	state_dead
+	STATE_EAT,
+	STATE_SLEEP,
+	STATE_THINK
 };
-
-typedef struct s_philo
-{
-	int			id;
-	pthread_t	tid;
-	int			state;
-}	t_philo;
 
 typedef struct s_fork
 {
@@ -48,11 +37,25 @@ typedef struct s_fork
 	bool			taken;
 }	t_fork;
 
+typedef struct s_philo
+{
+	int			id;
+	int			state;
+	long long	time_last_eat;
+	int			count_eat;
+	long long	time_start_sleep;
+	t_fork		*left;
+	t_fork		*right;
+	pthread_t	tid;
+}	t_philo;
+
+
 typedef struct s_data
 {
 	pthread_mutex_t	mutex_run;
 	t_philo			**philos;
 	t_fork			**forks;
+	long long		time_start;
 	int				n_philo;
 	int				time_die;
 	int				time_eat;
@@ -83,6 +86,10 @@ void	philo_destroy(t_philo *philo);
 /* fork */
 t_fork	*fork_create(void);
 void	fork_destroy(t_fork *fork);
+
+/* timer */
+// get current time (since Unix Epoch) in milliseconds
+long long	timer_get_time(void);
 
 /*
 ================================================================================
