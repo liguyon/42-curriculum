@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:10:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 08:52:50 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 10:41:44 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ static void	philo_wait_simulation_start(t_data *data)
 	pthread_mutex_unlock(&data->mutex_run);
 }
 
+static t_philo	*philo_get_from_tid(t_data *data, pthread_t tid)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->n_philo)
+	{
+		if (data->philos[i]->tid == tid)
+			return (data->philos[i]);
+	}
+	return (NULL);
+}
+
 // thread routine
 void	*philo_routine(void *vargp)
 {
@@ -35,6 +48,8 @@ void	*philo_routine(void *vargp)
 	philo_wait_simulation_start(data);
 	philo = philo_get_from_tid(data, pthread_self());
 	philo->time_last_eat = data->time_start;
+	if (philo->id % 2 == 0)
+		usleep(50e3);
 	philo_loop(data, philo, &time_now);
 	if (data->is_running && philo->state == STATE_DEAD)
 		printf("%lld %d died\n", time_now - data->time_start, philo->id);

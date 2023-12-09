@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:21 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 08:26:30 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 10:32:32 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_philo
 	long long	time_start_sleep;
 	t_fork		*left;
 	t_fork		*right;
+	bool		has_left;
+	bool		has_right;
 	pthread_t	tid;
 }	t_philo;
 
@@ -87,7 +89,6 @@ void		philo_destroy(t_philo *philo);
 void		philo_think(t_data *data, t_philo *philo, long long time_now);
 void		philo_sleep(t_data *data, t_philo *philo, long long time_now);
 void		philo_try_to_eat(t_data *data, t_philo *philo, long long time_now);
-t_philo		*philo_get_from_tid(t_data *data, pthread_t tid);
 void		philo_loop(t_data *data, t_philo *philo, long long *time_now);
 
 /* fork */
