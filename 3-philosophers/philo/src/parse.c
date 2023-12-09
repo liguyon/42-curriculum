@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:01:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 12:48:18 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 12:55:35 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ int	parse_args(t_data *data, int ac, char *av[])
 	data->time_die = ft_atoi(av[2]);
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
-	if (!data->n_philo || !data->time_die
-		|| !data->time_eat || !data->time_sleep)
-		return (parse_print_err());
 	if (ac == 6)
 		data->n_must_eat = ft_atoi(av[5]);
 	else
 		data->n_must_eat = -1;
+	if (!data->n_philo || !data->time_die
+		|| !data->time_eat || !data->time_sleep || !data->n_must_eat)
+		return (parse_print_err());
 	return (EXIT_SUCCESS);
 }
