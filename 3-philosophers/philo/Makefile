@@ -7,7 +7,8 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror \
 	-I$(INCDIR) \
 	-g \
-	-fsanitize=thread \
+	-O2 \
+	# -fsanitize=thread \
 
 CLFLAGS	= -pthread
 
