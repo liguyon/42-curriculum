@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 08:45:14 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 11:30:38 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ int	run(t_data *data)
 			data->philos[i]->right = data->forks[0];
 	}
 	data->finished_eating = 0;
-	data->time_start = get_time();
 	pthread_mutex_lock(&data->mutex_run);
+	data->time_start = get_time();
 	data->is_running = true;
 	pthread_mutex_unlock(&data->mutex_run);
 	i = -1;
