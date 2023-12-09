@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:21 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 06:21:32 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 06:54:34 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_philo
 	pthread_t	tid;
 }	t_philo;
 
-
 typedef struct s_data
 {
 	pthread_mutex_t	mutex_run;
@@ -71,25 +70,29 @@ typedef struct s_data
 */
 
 /* utils */
-int		ft_isdigit(int c);
-int		ft_atoi(const char *nptr);
-long	ft_atol(const char *nptr);
-void	*calloc_log(size_t nmemb, size_t size);
+int			ft_isdigit(int c);
+int			ft_atoi(const char *nptr);
+long		ft_atol(const char *nptr);
+void		*calloc_log(size_t nmemb, size_t size);
 
 /* parse */
-int		parse_args(t_data *data, int ac, char *av[]);
+int			parse_args(t_data *data, int ac, char *av[]);
 
 /* philo */
-t_philo	*philo_create(t_data *data, int id);
-void	philo_destroy(t_philo *philo);
+t_philo		*philo_create(t_data *data, int id);
+void		philo_destroy(t_philo *philo);
+void		philo_think(t_data *data, t_philo *philo, long long time_now);
+void		philo_sleep(t_data *data, t_philo *philo, long long time_now);
+void		philo_eat(t_data *data, t_philo *philo, long long time_now);
+t_philo		*philo_get_from_tid(t_data *data, pthread_t tid);
 
 /* fork */
-t_fork	*fork_create(void);
-void	fork_destroy(t_fork *fork);
+t_fork		*fork_create(void);
+void		fork_destroy(t_fork *fork);
 
 /* timer */
 // get current time (since Unix Epoch) in milliseconds
-long long	timer_get_time(void);
+long long	get_time(void);
 
 /*
 ================================================================================

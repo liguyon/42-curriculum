@@ -7,7 +7,7 @@ CC	= cc
 CFLAGS	= -Wall -Wextra -Werror \
 	-I$(INCDIR) \
 	-g \
-	# -fsanitize=thread \
+	-fsanitize=thread \
 
 CLFLAGS	= -pthread
 
@@ -27,8 +27,8 @@ SRC	= main.c \
 	  utils.c \
 	  parse.c \
 	  philo.c \
+	  philo1.c \
 	  fork.c \
-	  timer.c \
 
 ##############
 #

@@ -6,13 +6,24 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:07 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 02:11:29 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 06:54:34 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <sys/time.h>
 
-int	run(t_data *data)
+long long	get_time(void)
+{
+	struct timeval	now;
+	long long		ret;
+
+	gettimeofday(&now, NULL);
+	ret = now.tv_sec * 1e3 + now.tv_usec / 1e3;
+	return (ret);
+}
+
+int	load(t_data *data)
 {
 	int	i;
 
@@ -22,9 +33,9 @@ int	run(t_data *data)
 	data->forks = calloc_log(data->n_philo, sizeof(*data->forks));
 	if (data->forks == NULL)
 		return (EXIT_FAILURE);
-	i = -1;
 	if (pthread_mutex_init(&data->mutex_run, NULL) != EXIT_SUCCESS)
 		return (EXIT_FAILURE);
+	i = -1;
 	while (++i < data->n_philo)
 	{
 		data->philos[i] = philo_create(data, i + 1);
@@ -34,6 +45,15 @@ int	run(t_data *data)
 		if (data->forks[i] == NULL)
 			return (EXIT_FAILURE);
 	}
+	return (EXIT_SUCCESS);
+}
+
+int	run(t_data *data)
+{
+	int	i;
+
+	if (load(data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	i = -1;
 	while (++i < data->n_philo)
 	{
@@ -43,7 +63,7 @@ int	run(t_data *data)
 		else
 			data->philos[i]->right = data->forks[0];
 	}
-	data->time_start = timer_get_time();
+	data->time_start = get_time();
 	pthread_mutex_lock(&data->mutex_run);
 	data->is_running = true;
 	pthread_mutex_unlock(&data->mutex_run);
