@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 06:43:33 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 12:38:47 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 12:51:40 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	philo_think(t_data *data, t_philo *philo, long long time_now)
 	philo->state = STATE_THINK;
 	printf("%lld %d is thinking\n",
 		time_now - data->time_start, philo->id);
+	usleep(1e3);
 }
 
 void	philo_sleep(t_data *data, t_philo *philo, long long time_now)

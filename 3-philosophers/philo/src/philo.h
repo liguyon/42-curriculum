@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:55:21 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/09 10:32:32 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 12:45:28 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,5 @@ void		fork_destroy(t_fork *fork);
 /* timer */
 // get current time (since Unix Epoch) in milliseconds
 long long	get_time(void);
-
-/*
-================================================================================
-	log messages
-================================================================================
-*/
-
-# define LOG_N_PHILO "there must be at least 1 philosopher\n"
 
 #endif

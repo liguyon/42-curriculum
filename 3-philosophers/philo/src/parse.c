@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:01:23 by liguyon           #+#    #+#             */
-/*   Updated: 2023/11/30 16:49:59 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/09 12:48:18 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ static int	check_int(char *str)
 	return (EXIT_SUCCESS);
 }
 
+static int	parse_print_err(void)
+{
+	printf(ANSI_BRED "[ERROR] " ANSI_RESET "invalid arguments\n");
+	return (EXIT_FAILURE);
+}
+
 int	parse_args(t_data *data, int ac, char *av[])
 {
 	int	i;
@@ -49,20 +55,15 @@ int	parse_args(t_data *data, int ac, char *av[])
 	while (++i < ac)
 	{
 		if (check_int(av[i]) == EXIT_FAILURE)
-		{
-			printf(ANSI_BRED "[ERROR] " ANSI_RESET "invalid arguments\n");
-			return (EXIT_FAILURE);
-		}
+			return (parse_print_err());
 	}
 	data->n_philo = ft_atoi(av[1]);
-	if (data->n_philo == 0)
-	{
-		printf(ANSI_BRED "[ERROR] " ANSI_RESET LOG_N_PHILO);
-		return (EXIT_FAILURE);
-	}
 	data->time_die = ft_atoi(av[2]);
 	data->time_eat = ft_atoi(av[3]);
 	data->time_sleep = ft_atoi(av[4]);
+	if (!data->n_philo || !data->time_die
+		|| !data->time_eat || !data->time_sleep)
+		return (parse_print_err());
 	if (ac == 6)
 		data->n_must_eat = ft_atoi(av[5]);
 	else
