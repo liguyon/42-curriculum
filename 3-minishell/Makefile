@@ -6,10 +6,10 @@
 CC	= cc
 CFLAGS	= -Wall -Wextra -Werror \
 	-I$(INCDIR) \
-	-g \
+	-gdwarf-2 \
 	# -O2 \
 
-CLFLAGS	= 
+CLFLAGS	= -lreadline
 
 
 ##############
@@ -32,7 +32,7 @@ SRC	= main.c \
 #
 ##############
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re test
 
 all:	$(NAME)
 
@@ -46,6 +46,9 @@ fclean:	clean
 	rm -f $(NAME)
 
 re:	fclean all
+
+test: all
+	valgrind --leak-check=full --suppressions=readline.supp ./minishell
 
 #
 # project srcs build
