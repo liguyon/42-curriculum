@@ -13,7 +13,8 @@ Common Core | [get_next_line](1-get_next_line) | C | Static variables, buffering
 Common Core | [push_swap](2-push_swap) | C | Data structures, sorting algorithms, optimization
 Common Core | [minitalk](2-minitalk) | C | Inter-Process-Communication, signal handling, Client-Server architecture, binary encoding
 Common Core | [fdf](2-fdf) | C, MinilibX | 3D graphics programming, linear algebra
-Common Core | [philosophers](3-philosophers) | C | Dining philosophers problem, concurrent programming
+Common Core | [philosophers](3-philosophers) | C | Multithreading
+Common Core | [minishell](3-minishell) | C | Unix shell
 
 ## About 42 School
 
