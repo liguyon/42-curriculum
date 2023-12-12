@@ -1,0 +1,10 @@
+# folders
+.vscode
+build
+
+# files
+*.a
+*.o
+*.out
+test*.cpp
+megaphone
