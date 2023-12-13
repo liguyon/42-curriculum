@@ -6,6 +6,7 @@ build
 *.a
 *.o
 *.out
-test*.cpp
 megaphone
 phonebook
+accounts
+*.log

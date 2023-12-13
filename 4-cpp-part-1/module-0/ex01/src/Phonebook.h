@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:59 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 15:22:44 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 18:05:45 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ public:
 	bool getIsRunning() const;
 
 private:
-	bool	m_isRunning;
-	Contact	m_contacts[8];
-	int		m_contactsCount;
-	bool	m_contactsFilled;
-	int 	askContactIndex() const;
+	bool		m_isRunning;
+	Contact		m_contacts[8];
+	static int	m_nbContacts;
+	static bool	m_contactsFilled;
+	int 		m_askContactIndex() const;
 };
