@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 09:33:49 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:42:51 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void Contact::displayInList(void) const
 
 void Contact::print(void) const
 {
-	std::cout << m_name << '\n' << m_lastName << '\n' << m_nickname << '\n'
-		<< m_phoneNumber << '\n' << m_secret << std::endl;
+	std::cout << "first name     : " << m_name << '\n';
+	std::cout << "last name      : " << m_lastName << '\n';
+	std::cout << "nickname       : " << m_nickname << '\n';
+	std::cout << "phone number   : " << m_phoneNumber << '\n';
+	std::cout << "darkest secret : " << m_secret << std::endl;
 }
