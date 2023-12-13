@@ -6,7 +6,7 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:50 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 09:30:51 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:38:57 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class Contact
 {
 public:
 	Contact();
+	Contact(int id);
 	void displayInList(void) const;
 	void print(void) const;
 

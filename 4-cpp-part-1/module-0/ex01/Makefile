@@ -26,6 +26,7 @@ OBJ	= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 NAME = phonebook
 SRC	= main.cpp \
 	Contact.cpp \
+	Phonebook.cpp
 
 
 ##############

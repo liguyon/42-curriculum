@@ -6,13 +6,17 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 09:42:51 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 14:44:48 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Contact.h>
+#include "Contact.h"
 #include <iostream>
 #include <sstream>
+
+Contact::Contact()
+{
+}
 
 static const std::string getUserInput(const std::string& field)
 {
@@ -22,19 +26,21 @@ static const std::string getUserInput(const std::string& field)
 	return ret;
 }
 
-Contact::Contact()
+Contact::Contact(int id)
 {
-	static int id = 0;
-	m_id = id++;
+	m_id = id;
+	std::cout << "\nAdding a new contact...\n";
 	m_name = getUserInput("first name");
 	m_lastName = getUserInput("last name");
 	m_nickname = getUserInput("nickname");
 	m_phoneNumber = getUserInput("phone number");
 	m_secret = getUserInput("darkest secret");
+	std::cout << "Added a contact successfully.\n";
 }
 
 static void printFormattedEntry(const std::string& entry)
 {
+	std::cout << '|';
 	int len = entry.length();
 	if (len <= 10)
 	{
@@ -48,8 +54,6 @@ static void printFormattedEntry(const std::string& entry)
 
 void Contact::displayInList(void) const
 {
-	std::cout << '|';
-	
 	// convert id to string
 	std::stringstream stream;
 	stream << m_id;
@@ -57,13 +61,12 @@ void Contact::displayInList(void) const
 	stream >> id_str;
 	printFormattedEntry(id_str);
 
-	std::cout << '|';
 	printFormattedEntry(m_name);
-	std::cout << '|';
+
 	printFormattedEntry(m_lastName);
-	std::cout << '|';
+
 	printFormattedEntry(m_nickname);
-	std::cout << "|\n";
+	std::cout << '|' << std::endl;
 }
 
 void Contact::print(void) const
