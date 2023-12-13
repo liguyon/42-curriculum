@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:38:11 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/12 11:07:27 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 04:57:55 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 
-void	print_capitalized(const std::string str)
+static void	printCapitalized(const std::string& str)
 {
 	int len = str.length();
 	for (int i = 0 ; i < len ; ++i)
@@ -28,12 +28,12 @@ int	main(int argc, char *argv[])
 	{
 		for (int i = 1 ; i < argc ; ++i)
 		{
-			std::string str = argv[i];
-			print_capitalized(str);
+			const std::string str = argv[i];
+			printCapitalized(str);
 		}
 	}
 
-	std::cout << '\n';
+	std::cout << std::endl;
 
 	return 0;
 }

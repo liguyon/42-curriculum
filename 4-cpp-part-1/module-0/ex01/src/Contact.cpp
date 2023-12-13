@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:52 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/12 12:33:49 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 05:06:31 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Contact.h>
 #include <iostream>
 
-static void print_formatted_entry(const std::string& entry)
+static void printFormattedEntry(const std::string& entry)
 {
 	int len = entry.length();
 	if (len <= 10)
@@ -32,8 +32,12 @@ static void print_formatted_entry(const std::string& entry)
 void Contact::print(void) const
 {
 	std::cout << '|';
-	print_formatted_entry(this->m_name);
+	printFormattedEntry(this->m_name);
 	std::cout << '|';
-	print_formatted_entry(this->m_last_name);
-
+	printFormattedEntry(this->m_lastName);
+	std::cout << '|';
+	printFormattedEntry(this->m_nickname);
+	std::cout << '|';
+	printFormattedEntry(this->m_phoneNumber);
+	std::cout << '|';
 }
