@@ -6,13 +6,16 @@
 /*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:54 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/12 12:32:53 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:34:08 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Contact.h>
 
-int	main(int argc, char *argv[])
+int	main()
 {
+	Contact c1;
+	c1.displayInList();
+	c1.print();
 	return 0;
 }

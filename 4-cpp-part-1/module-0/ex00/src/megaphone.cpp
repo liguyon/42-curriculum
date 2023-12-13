@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:38:11 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 04:57:55 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:36:27 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	main(int argc, char *argv[])
 	else
 	{
 		for (int i = 1 ; i < argc ; ++i)
-		{
-			const std::string str = argv[i];
-			printCapitalized(str);
-		}
+			printCapitalized(argv[i]);
 	}
 
 	std::cout << std::endl;

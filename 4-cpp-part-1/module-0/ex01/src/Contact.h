@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liguyon <liguyon@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: liguyon <liguyon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 11:15:50 by liguyon           #+#    #+#             */
-/*   Updated: 2023/12/13 05:01:33 by liguyon          ###   ########.fr       */
+/*   Updated: 2023/12/13 09:30:51 by liguyon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 class Contact
 {
 public:
+	Contact();
+	void displayInList(void) const;
 	void print(void) const;
 
 private:
-
-	const std::string m_name;
-	const std::string m_lastName;
-	const std::string m_nickname;
-	const std::string m_phoneNumber;
-	const std::string m_secret;
-
+	int			m_id;
+	std::string m_name;
+	std::string m_lastName;
+	std::string m_nickname;
+	std::string m_phoneNumber;
+	std::string m_secret;
 };

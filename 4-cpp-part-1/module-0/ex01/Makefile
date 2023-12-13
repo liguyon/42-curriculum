@@ -24,9 +24,8 @@ INCDIR	= src
 
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 NAME = phonebook
-SRC	= phonebook.cpp \
-	main.cpp \
-	contact.cpp
+SRC	= main.cpp \
+	Contact.cpp \
 
 
 ##############
