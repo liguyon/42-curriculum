@@ -15,6 +15,7 @@ Common Core | [minitalk](2-minitalk) | C | Inter-Process-Communication, signal h
 Common Core | [fdf](2-fdf) | C, MinilibX | 3D graphics programming, linear algebra
 Common Core | [philosophers](3-philosophers) | C | Multithreading
 Common Core | [minishell](3-minishell) | C | Unix shell
+Common Core | [cpp-modules-0-4](4-cpp-part-1) | C++ | Object-oriented programming
 
 ## About 42 School
 
