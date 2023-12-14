@@ -9,3 +9,4 @@ build
 *.log
 test*.cpp
 zombie
+brain
