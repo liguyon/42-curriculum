@@ -1,0 +1,11 @@
+# folders
+.vscode
+build
+
+# files
+*.a
+*.o
+*.out
+*.log
+test*.cpp
+zombie
