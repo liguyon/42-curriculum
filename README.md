@@ -16,6 +16,7 @@ Common Core | [fdf](2-fdf) | C, MinilibX | 3D graphics programming, linear algeb
 Common Core | [philosophers](3-philosophers) | C | Multithreading
 Common Core | [minishell](3-minishell) | C | Unix shell
 Common Core | [cpp-modules-0-4](4-cpp-part-1) | C++ | Object-oriented programming
+Common Core | [miniRT](https://github.com/R-luiz/miniRT) | C, MinilibX | Ray tracing
 
 ## About 42 School
 
